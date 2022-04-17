@@ -1,0 +1,54 @@
+
+/* <!-- Global variables for sheet --> */
+
+:root{
+    --pageBackground: rgba(240, 240, 240, 1);
+    --navBackground: rgba(150, 150, 150, 1);
+    
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+ul{
+    list-style-type: none;
+}
+
+body{
+    background-color: var(--pageBackground);
+}
+
+/* <!-- Header --> */
+
+header{
+    background-color: var(--navBackground);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#page-name{
+    font-size: 2rem;
+    margin: 5px;
+    padding: 5px;
+}
+
+.dropdown-menu-nav{
+    position: absolute;
+    right: 0;
+    margin: 5px;
+    padding: 15px;
+}
+
+#menu-navbar{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
