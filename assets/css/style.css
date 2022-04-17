@@ -46,8 +46,8 @@ nav {
     padding: 15px;
 }
 
-#menu-navbar{
-    display: flex;
+#difficulty-settings{
+    display: none;
     justify-content: space-evenly;
     font-size: 1rem;
     letter-spacing: 2px;
