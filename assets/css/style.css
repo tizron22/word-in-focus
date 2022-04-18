@@ -25,6 +25,9 @@ body{
 
 header{
     background-color: var(--navBackground);
+    position: -webkit-sticky;
+	position: sticky;
+	top: 0;
 }
 
 nav {
@@ -51,4 +54,16 @@ nav {
     justify-content: space-evenly;
     font-size: 1rem;
     letter-spacing: 2px;
+}
+
+
+.game{
+    width: 330px;
+    margin-bottom: 30px;
+}
+
+.input{
+    display: flex;
+    flex-wrap: wrap;
+    width: 360px;
 }
