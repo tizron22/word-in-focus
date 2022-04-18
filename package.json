@@ -1,0 +1,22 @@
+{
+  "name": "word-in-focus",
+  "version": "1.0.0",
+  "description": "--- ![Site Responsiveness]()",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tizron22/word-in-focus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tizron22/word-in-focus/issues"
+  },
+  "homepage": "https://github.com/tizron22/word-in-focus#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
