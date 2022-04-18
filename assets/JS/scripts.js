@@ -1,12 +1,14 @@
 // Header Scripts
-
+/**
+ * This will show and hide the difficulty options of the game.
+ */
 function difficultySelector() {
-    const difficultySettings = document.getElementById('difficulty-settings');
-    if (difficultySettings.style.display === 'none') {
-        difficultySettings.style.display = 'flex';
+    const difficultyOptions = document.getElementById('difficulty-settings');
+    if (difficultyOptions.style.display === 'none') {
+        difficultyOptions.style.display = 'flex';
     } else {
-        difficultySettings.style.display = 'none';
-    }
+        difficultyOptions.style.display = 'none';
+    };
 };
 
 
