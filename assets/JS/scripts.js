@@ -20,7 +20,7 @@ function difficultySelector() {
 const difficultySettings = [
     {
         "difficulty" : "easy",
-        "guesses" : 8,
+        "guesses" : 7,
         "wordlength" : 4,
     },
     {
