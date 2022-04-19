@@ -165,16 +165,16 @@ function deletingEntry(){
 function submittingAnswer(){
     const inputWord = guessInput[curRow].join('');
     if(curCol === currentWordLength){
-        resultMsg();
+        resultMsg(inputWord);
     };
 };
 
 /**
  * Will add a message to page above the game and below the restart button.
  */
-function resultMsg(){
+function resultMsg(userGuess){
     const resultText = document.querySelector('.result'); 
-    if(inputWord === answer){
+    if(userGuess == answer){
         resultText.textContent = 'Congratutions';
     } else {
         if(curRow >= currentGuesses) {
