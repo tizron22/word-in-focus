@@ -40,6 +40,15 @@ nav {
     flex-wrap: wrap;
 }
 
+.how-to{
+    position: absolute;
+    left: 0;
+    margin: 2.5px;
+    padding: 15px 18.5px;
+    border: 0.5px solid var(--borderColour);
+    border-radius: 60%;  
+}
+
 #page-name{
     font-size: 2rem;
     margin: 5px;
