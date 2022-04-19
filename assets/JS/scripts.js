@@ -14,8 +14,9 @@ function difficultySelector() {
 
 // Game Scripts
 
-// Set Up Game
-
+/**
+ * This is the variables for the game as an Object array.
+ */
 const difficultySettings = [
     {
         "difficulty" : "easy",
@@ -38,7 +39,7 @@ let currentDifficulty = document.querySelector('input[name="game-difficulty"]:ch
 /** 
 * This will add an event listener to the radio buttons and change the game accordingly.
 */
-function addDifficultyListener() {
+function addDifficultyListener(){
     const difficultyRadios = document.querySelectorAll('input[name="game-difficulty"]');
     difficultyRadios.forEach(option =>{
         option.addEventListener('click', () => {
@@ -73,16 +74,16 @@ let guessInput;
 function createEmptyArrays(rowLength, columnLength){
     guessInput = [];
     let baseArray = [];
-    for(let i = 0; i < rowLength; i++){
-        baseArray.push('');
-    };
-    for(let i = 0; i < columnLength; i++){
+    for(let col = 0; col < columnLength; col++){
+        for(let row = 0; row < rowLength; row++){
+            baseArray.push('');
+        };
         guessInput.push(baseArray);
+        baseArray = [];
     };
 };
 
 const gameDisplay = document.querySelector('.game');
-
 /**
  * This will reset the game by removing the innerHTML from the div for the tiles and 
  * then replace it with the new amount of tiles.
@@ -94,7 +95,7 @@ function resetGame(){
         setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
         guessRow.forEach((guess, guessIndex) =>{
             const rowArea = document.createElement('div');
-            rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-area-' + guessIndex);
+            rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-inputColumn-' + guessIndex);
             rowArea.classList.add('tile');
             setArea.append(rowArea);
         });
