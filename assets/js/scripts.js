@@ -105,6 +105,7 @@ function resetGame(){
         });
         gameDisplay.append(setArea);
     });
+    console.log('Game Reset')
 };
 
 
@@ -114,6 +115,21 @@ addDifficultyListener();
 /**
  * This is the API method
  */
+ const option = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com',
+		'X-RapidAPI-Key': '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb'
+	}
+};
+/**
+ * This is the API fetch that gets the data to use in the game.
+ */
+// fetch(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=%5E%5Ba-zA-Z%5D%2B%24&letters=${currentWordLength}`, option)
+// 	.then(response => response.json())
+// 	.then(response => console.log(response))
+// 	.catch(err => console.error(err));
+
 
 let answer = 'RUPPET';
 
@@ -142,7 +158,7 @@ function keyboardClick(letter){
         deletingEntry();
     } else if(letter === 'ENTER'){
         submittingAnswer();
-    } else if(curCol < currentWordLength && curRow <currentGuesses) {
+    } else if(curCol < currentWordLength && curRow < currentGuesses) {
         inputLetter(letter);
     };
 };
@@ -165,7 +181,17 @@ function deletingEntry(){
 function submittingAnswer(){
     const inputWord = guessInput[curRow].join('');
     if(curCol === currentWordLength){
+        showGuessResults();
+        nextRow(inputWord)
         resultMsg(inputWord);
+    };
+};
+
+function nextRow(userGuess){
+    if(userGuess !== answer){
+        curRow++;
+        curCol = 0;
+        console.log(curRow);
     };
 };
 
@@ -181,7 +207,7 @@ function resultMsg(userGuess){
             resultText.textContent = 'Try Again?';
         };
     };
-    setTimeout(() => resultText.textContent = '', 3000);
+    setTimeout(() => resultText.textContent = '', 7500);
 };
 
 /**
@@ -193,4 +219,21 @@ function inputLetter(letter){
     curCol++;
     col.textContent = letter;
     col.setAttribute('data', letter);
+};
+
+function showGuessResults(){
+    const currentRow = document.querySelector('#inputRow-' + curRow).childNodes;
+    currentRow.forEach((col, colIndex) =>{
+        const colLetter = col.getAttribute('data');
+        setTimeout(() =>{
+            if (colLetter === answer[colIndex]){
+                col.style.backgroundColor = 'green';
+            } else if (answer.includes(colLetter)) {
+                col.style.backgroundColor = 'orange';
+            } else {
+                col.style.backgroundColor = 'grey';
+            }
+        }, 500 * colIndex);
+
+    });
 };
