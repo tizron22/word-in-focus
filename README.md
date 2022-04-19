@@ -102,11 +102,23 @@
 
 ## Technologies Used
 
-
+>- The project was written in HTML, CSS and JavaScript.
+>- The project uses [FontAwesome](https://fontawesome.com/) for the free icons used for web development.
+>- The project was written in [Visual Studio Code IDE](https://code.visualstudio.com/). 
+>- The project was tested utalising [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extention in VS code.
+>- The project uses [GIT](https://git-scm.com/) for verison control and [GitHub](https://github.com/) as a remote repository.
+>- The project uses [GitHub Pages](https://pages.github.com/) for hosting the site.
+>- The project's wireframes were designed in [Balsamiq](https://balsamiq.com/wireframes/).
+>- The project's HTML was validated using [W3C HTML markup validator](https://validator.w3.org/).
+>- The project's CSS was validated using [W3C jigsaw CSS validator](https://jigsaw.w3.org/css-validator/).
+>- The project's JavaScript was validated using [JS HINT JavaScript validator](https://jshint.com/)
+>- The project's performance and accessibility was tested using [Google Chrome's Lighthouse](https://developers.google.com/web/tools/lighthouse) and [WebAim's W.A.V.E](https://wave.webaim.org/).
 ---
 # Testing
 
-
+## Jest Automated Testing
+>- Jest was used for automated jesting of some of the JavaScript logic, please find documentation below. 
+>- The testing documentation can be found here:- [TESTING.md](TESTING.md)
 
 ---
 
