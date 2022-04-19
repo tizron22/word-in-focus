@@ -3,7 +3,7 @@
  * This will show and hide the difficulty options of the game.
  */
 function difficultySelector() {
-    const difficultyOptions = document.getElementById('difficulty-settings');
+    const difficultyOptions = document.querySelector('#difficulty-settings');
     if (difficultyOptions.style.display === 'none') {
         difficultyOptions.style.display = 'flex';
     } else {
@@ -84,12 +84,16 @@ function createEmptyArrays(rowLength, columnLength){
 };
 
 const gameDisplay = document.querySelector('.game');
+let curRow = 0;
+let curCol = 0; 
 /**
  * This will reset the game by removing the innerHTML from the div for the tiles and 
  * then replace it with the new amount of tiles.
  */
 function resetGame(){
     gameDisplay.innerHTML = '';
+    curRow = 0;
+    curCol = 0; 
     guessInput.forEach((guessRow, guessRowIndex) =>{
         const setArea = document.createElement('div');
         setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
@@ -107,15 +111,86 @@ function resetGame(){
 setupGame(currentDifficulty);
 addDifficultyListener();
 
-const inputKeyboard = document.querySelector('.input');
+/**
+ * This is the API method
+ */
 
+let answer = 'RUPPET';
+
+const inputKeyboard = document.querySelector('.input');
 const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
                         'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
                         'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<'];
 
+/**
+ * Creates the keyboard for the game based on the keys above.
+ */
 keyboardKeys.forEach(key =>{
     const createKeyboard = document.createElement('button');
     createKeyboard.textContent = key;
-    createKeyboard.setAttribute('id', key);   
+    createKeyboard.setAttribute('id', key);
+    createKeyboard.addEventListener('click', () => keyboardClick(key));   
     inputKeyboard.append(createKeyboard);
 });
+
+/**
+ * Based on what the user clicks on will create a different action. 
+ * @param {character} letter 
+ */
+function keyboardClick(letter){
+    if(letter === '<<' && curCol > 0){
+        deletingEntry();
+    } else if(letter === 'ENTER'){
+        submittingAnswer();
+    } else if(curCol < currentWordLength && curRow <currentGuesses) {
+        inputLetter(letter);
+    };
+};
+
+/**
+ * Deletes the previous entry before the attempt has been submitted.
+ */
+function deletingEntry(){
+    curCol--;
+    const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
+    col.setAttribute('data', '');
+    col.textContent = '';
+    guessInput[curRow][curCol] = '';
+};
+
+/**
+ * Handles the submitted answer either will move attempt to next row,
+ * ends the game or move on to the next round.  
+ */
+function submittingAnswer(){
+    const inputWord = guessInput[curRow].join('');
+    if(curCol === currentWordLength){
+        resultMsg();
+    };
+};
+
+/**
+ * Will add a message to page above the game and below the restart button.
+ */
+function resultMsg(){
+    const resultText = document.querySelector('.result'); 
+    if(inputWord === answer){
+        resultText.textContent = 'Congratutions';
+    } else {
+        if(curRow >= currentGuesses) {
+            resultText.textContent = 'Try Again?';
+        };
+    };
+    setTimeout(() => resultText.textContent = '', 3000);
+};
+
+/**
+ * Will input the letter into the current column before moving onto the next one.
+ */
+function inputLetter(letter){
+    const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
+    guessInput[curRow][curCol] = letter;
+    curCol++;
+    col.textContent = letter;
+    col.setAttribute('data', letter);
+};
