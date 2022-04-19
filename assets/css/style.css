@@ -87,11 +87,26 @@ nav {
     letter-spacing: 2px;
     text-align: center;
 }
+.highscore{
+    margin-top: 10px;
+}
+
+.control{
+    border: 1px solid var(--buttonColour);
+    border-radius: 20px;
+    margin-top: 25px;
+}
 
 /* <!-- Gaming Area  --> */
 .game-display{
     width: 510px;
     height: 90vh;    
+}
+
+.result{
+    margin: 10px;
+    letter-spacing: 2px;
+    text-align: center;
 }
 
 .game {
