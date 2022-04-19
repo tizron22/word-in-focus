@@ -22,6 +22,9 @@ ul{
 
 body{
     background-color: var(--pageBackground);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* <!-- Header --> */
@@ -69,9 +72,25 @@ nav {
     letter-spacing: 2px;
 }
 
+/* <!-- Control Area  --> */
+.control-area{
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.scoring, .control{
+    width: 50%;
+    font-size: 20px;
+    margin: 5px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* <!-- Gaming Area  --> */
 .game-display{
-    width: 450px;
+    width: 510px;
     height: 90vh;    
 }
 
@@ -97,6 +116,8 @@ nav {
     margin: 2px;
 }
 
+/* <!-- Keyboard Area  --> */
+
 .input{
     display: flex;
     flex-wrap: wrap;
@@ -119,4 +140,10 @@ nav {
 .input button:nth-child(20),
 .input button:nth-child(28) {
     width: 68px;
+}
+
+@media screen and (max-width:510px){
+    body{
+        width: 510px;
+    }
 }
