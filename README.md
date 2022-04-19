@@ -41,9 +41,11 @@
 
 ### Stakeholder Requirements
 >#### **External Users**
+> As a new user, I'd be looking for a game that will test my memory which I'll be able to change the difficulty of from easy to hard to test my abilities based on how I'm feeling that day. A game that will keep me entertained for long periods of time and changes up each time a new game is started, having a count of my highscore to be able to beat would help keep motivation and allow me to beat previous attmepts.   
 
 
 >#### **Site Owner**
+> As the site owner, I would like a game that caters to the players needs where they would be able to paly for hours on end to beat previous attempts. A game that will use external resources to ensure no two rounds are the same, changing difficulty based on user demand but offers clear signs of when the player is close to the desired outcome. 
 
 
 ### User Stories
