@@ -94,6 +94,35 @@
 
 ### Existing Features
 
+>#### Game Instructions
+>- On the left hand side of the logo is a circle with a question mark within, once clicked this will bring up the instructions on how to play the game along with the points awarded each round. 
+
+>#### Hamburger Menu
+>- On the right hand side of the logo is a hamburger menu which is 3 horizonal lines looking like a hamburger, once clicked it will extend the header to show the difficulty options for players to use. 
+
+>#### Select Difficulty
+>- Users once clicking on the hamburger menu, will see a dropdown underneath the header which will allow them to select which difficulty they would like to play at either easy, medium or hard. 
+>- The default difficulty is set at medium.
+
+>#### Highscore
+>- This will show users the current highscore they have achieved out of the most recent games, to be able to compare against with the current round. 
+
+>#### Round | Score
+>- This shows users the current round they are playing on and the score they have achieved so far. 
+
+>#### Restart Game
+>- When the button is clicked the game will restart at the beginning
+
+>#### Gaming Tiles
+>- This will show the current letter that has been inputted or previous guesses.
+>- If the letter is correct and it the right space the tile will turn green 
+>- If the letter is correct but in the wrong space the tile will change to orange.
+>- If the letter isn't in the word the tile will change to grey. 
+>- Offering live feedback on any submitted guesses along with visual display for the user experience. 
+
+>#### Keyboard
+>- The keyboard at the bottom of the display will allow users to interact with the game, they will either be abvle to select a letter for thier guess, submit thier guess by pressign 'ENTER' or go back to restart thier guess before being submitted. 
+
 
 ### Future Feature Considerations
 
