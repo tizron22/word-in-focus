@@ -59,7 +59,21 @@
 
 ### Requirements
 
+> Easy to Navigate and User Friendly
+>- Straight forward and uncomplicated view, with the sense of familiarity.
+
+> Reuseability
+>- Users must be able to re-use this game multiple times with a different experience for each game. 
+
+> Rememerable
+>- Users must be able to remember this site to be able to recommend with friends to increase the number of players.
+
 ## Structure
+>### Index Sheet
+> Included within the header include game instructions, name and button to change the difficulty of the game. 
+> Within the body to include the Highscore, current round and points available along with a button to restart the whole game if necessary. 
+> Based on the difficulty selected the amount of rows and columns will be displayed under the restart button. 
+> Below the game display of the rows and columns will be the keyboard where users will be able to interacte with the game on.
 
 ---
 
