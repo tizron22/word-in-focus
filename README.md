@@ -148,6 +148,8 @@
 ## Credits
 
 ### Code Snippets
+>[Wordle Clone In Javascript - Code with Ania Kubów](https://www.youtube.com/watch?v=mpby4HiElek)
+> Some of the logic used in this video was altered for use within this project. 
 
 
 ### Pictures
