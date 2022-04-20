@@ -94,6 +94,9 @@
 
 ### Existing Features
 
+>#### Gaming Logic
+>- [Gaming Logic Wireframe](./assets/wireframes/Logic-Wireframe.pdf)
+
 >#### Game Instructions
 >- On the left hand side of the logo is a circle with a question mark within, once clicked this will bring up the instructions on how to play the game along with the points awarded each round. 
 
