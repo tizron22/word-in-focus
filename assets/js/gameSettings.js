@@ -18,3 +18,18 @@
         "wordlength" : 6,
     },
 ];
+
+const gamingPoints = [
+    {
+        "difficulty" : "easy", 
+        "points": 5,
+    },
+    {
+        "difficulty" : "medium", 
+        "points": 15,
+    },
+    {
+        "difficulty" : "hard", 
+        "points": 25,
+    },
+];
