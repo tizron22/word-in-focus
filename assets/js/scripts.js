@@ -5,10 +5,10 @@
  */
  const difficultySelector = () =>{
     const difficultyOptions = document.querySelector('#difficulty-settings');
-    if (difficultyOptions.style.display === 'none') {
-        difficultyOptions.style.display = 'flex';
-    } else {
+    if (difficultyOptions.style.display === 'flex') {
         difficultyOptions.style.display = 'none';
+    } else {
+        difficultyOptions.style.display = 'flex';
     }
 };
 
@@ -38,7 +38,6 @@ const setupGame = difficulty =>{
         if(game.difficulty === difficulty){
             currentGuesses = game.guesses;
             currentWordLength = game.wordlength;
-            createEmptyArrays(currentWordLength, currentGuesses);
             resetGame();
         }
     });
@@ -73,6 +72,7 @@ const resetGame = () =>{
     gameDisplay.innerHTML = '';
     curRow = 0;
     curCol = 0; 
+    createEmptyArrays(currentWordLength, currentGuesses);
     guessInput.forEach((guessRow, guessRowIndex) =>{
         const setArea = document.createElement('div');
         setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
@@ -202,7 +202,6 @@ const resultMsg = userGuess =>{
  */
 const inputLetter = letter =>{
     if(letter !== '<<' && letter !== 'DELETE' && letter !== 'BACKSPACE'){
-        console.log('Your pressing ' + letter + ' Dickhead');
         const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
         guessInput[curRow][curCol] = letter;
         curCol++;
