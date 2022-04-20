@@ -3,14 +3,14 @@
 /**
  * This will show and hide the difficulty options of the game.
  */
- function difficultySelector() {
+ const difficultySelector = () =>{
     const difficultyOptions = document.querySelector('#difficulty-settings');
     if (difficultyOptions.style.display === 'none') {
         difficultyOptions.style.display = 'flex';
     } else {
         difficultyOptions.style.display = 'none';
     }
-}
+};
 
 
 // Game Scripts
@@ -40,7 +40,7 @@ let currentDifficulty = document.querySelector('input[name="game-difficulty"]:ch
 /** 
 * This will add an event listener to the radio buttons and change the game accordingly.
 */
-function addDifficultyListener(){
+const addDifficultyListener = () =>{
     const difficultyRadios = document.querySelectorAll('input[name="game-difficulty"]');
     difficultyRadios.forEach(option =>{
         option.addEventListener('click', () => {
@@ -48,14 +48,14 @@ function addDifficultyListener(){
             setupGame(currentDifficulty);
         });
     });
-}
+};
 
 let currentGuesses;
 let currentWordLength;
 /**
  * This sets up the game and changes the user input array based on difficulty.
  */
-function setupGame(difficulty){
+const setupGame = difficulty =>{
     difficultySettings.forEach(game =>{
         if(game.difficulty === difficulty){
             currentGuesses = game.guesses;
@@ -64,7 +64,7 @@ function setupGame(difficulty){
             resetGame();
         }
     });
-}
+};
 
 let guessInput;
 /**
@@ -72,7 +72,7 @@ let guessInput;
  * @param {number} rowLength 
  * @param {number} columnLength 
  */
-function createEmptyArrays(rowLength, columnLength){
+const createEmptyArrays = (rowLength, columnLength) =>{
     guessInput = [];
     let baseArray = [];
     for(let col = 0; col < columnLength; col++){
@@ -82,7 +82,7 @@ function createEmptyArrays(rowLength, columnLength){
         guessInput.push(baseArray);
         baseArray = [];
     }
-}
+};
 
 const gameDisplay = document.querySelector('.game');
 let curRow = 0;
@@ -91,7 +91,7 @@ let curCol = 0;
  * This will reset the game by removing the innerHTML from the div for the tiles and 
  * then replace it with the new amount of tiles.
  */
-function resetGame(){
+const resetGame = () =>{
     gameDisplay.innerHTML = '';
     curRow = 0;
     curCol = 0; 
@@ -107,7 +107,7 @@ function resetGame(){
         gameDisplay.append(setArea);
     });
     console.log('Game Reset');
-}
+};
 
 
 setupGame(currentDifficulty);
@@ -116,6 +116,7 @@ addDifficultyListener();
 /**
  * This is the API method
  */
+let data = {};
  const option = {
 	method: 'GET',
 	headers: {
@@ -127,10 +128,10 @@ addDifficultyListener();
  * This is the API fetch that gets the data to use in the game.
  */
 fetch(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=%5E%5Ba-zA-Z%5D%2B%24&letters=${currentWordLength}`, option)
-	.then(response => response.json())
-	.then(response => console.log(response))
+	.then(response => data = response.json())
+	.then(response =>  console.log(response))
 	.catch(err => console.error(err));
-
+console.log(data);
 
 let answer = 'RUPPET';
 
@@ -154,7 +155,7 @@ keyboardKeys.forEach(key =>{
  * Based on what the user clicks on will create a different action. 
  * @param {character} letter 
  */
-function keyboardClick(letter){
+const keyboardClick = letter =>{
     if(letter === '<<' && curCol > 0){
         deletingEntry();
     } else if(letter === 'ENTER'){
@@ -162,44 +163,44 @@ function keyboardClick(letter){
     } else if(curCol < currentWordLength && curRow < currentGuesses) {
         inputLetter(letter);
     }
-}
+};
 
 /**
  * Deletes the previous entry before the attempt has been submitted.
  */
-function deletingEntry(){
+const deletingEntry = () =>{
     curCol--;
     const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
     col.setAttribute('data', '');
     col.textContent = '';
     guessInput[curRow][curCol] = '';
-}
+};
 
 /**
  * Handles the submitted answer either will move attempt to next row,
  * ends the game or move on to the next round.  
  */
-function submittingAnswer(){
+const submittingAnswer = () =>{
     const inputWord = guessInput[curRow].join('');
     if(curCol === currentWordLength){
         showGuessResults();
         nextRow(inputWord);
         resultMsg(inputWord);
     }
-}
+};
 
-function nextRow(userGuess){
+const nextRow = userGuess =>{
     if(userGuess !== answer){
         curRow++;
         curCol = 0;
         console.log(curRow);
     }
-}
+};
 
 /**
  * Will add a message to page above the game and below the restart button.
  */
-function resultMsg(userGuess){
+const resultMsg = userGuess =>{
     const resultText = document.querySelector('.result'); 
     if(userGuess == answer){
         resultText.textContent = 'Congratutions';
@@ -209,20 +210,20 @@ function resultMsg(userGuess){
         }
     }
     setTimeout(() => resultText.textContent = '', 7500);
-}
+};
 
 /**
  * Will input the letter into the current column before moving onto the next one.
  */
-function inputLetter(letter){
+const inputLetter = letter =>{
     const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
     guessInput[curRow][curCol] = letter;
     curCol++;
     col.textContent = letter;
     col.setAttribute('data', letter);
-}
+};
 
-function showGuessResults(){
+const showGuessResults = () =>{
     const currentRow = document.querySelector('#inputRow-' + curRow).childNodes;
     currentRow.forEach((col, colIndex) =>{
         const colLetter = col.getAttribute('data');
@@ -237,4 +238,4 @@ function showGuessResults(){
         }, 500 * colIndex);
 
     });
-}
+};
