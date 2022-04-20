@@ -12,29 +12,7 @@
     }
 };
 
-
 // Game Scripts
-
-/**
- * This is the variables for the game as an Object array.
- */
-const difficultySettings = [
-    {
-        "difficulty" : "easy",
-        "guesses" : 7,
-        "wordlength" : 4,
-    },
-    {
-        "difficulty" : "medium",
-        "guesses" : 6,
-        "wordlength" : 5,
-    },
-    {
-        "difficulty" : "hard",
-        "guesses" : 5,
-        "wordlength" : 6,
-    },
-];
 
 let currentDifficulty = document.querySelector('input[name="game-difficulty"]:checked').value;
 /** 
@@ -106,7 +84,6 @@ const resetGame = () =>{
         });
         gameDisplay.append(setArea);
     });
-    console.log('Game Reset');
 };
 
 
@@ -127,11 +104,11 @@ let data = {};
 /**
  * This is the API fetch that gets the data to use in the game.
  */
-fetch(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=%5E%5Ba-zA-Z%5D%2B%24&letters=${currentWordLength}`, option)
-	.then(response => data = response.json())
-	.then(response =>  console.log(response))
-	.catch(err => console.error(err));
-console.log(data);
+// fetch(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=%5E%5Ba-zA-Z%5D%2B%24&letters=${currentWordLength}`, option)
+// 	.then(response => data = response.json())
+// 	.then(response =>  console.log(response))
+// 	.catch(err => console.error(err));
+// console.log(data);
 
 let answer = 'RUPPET';
 
@@ -139,6 +116,8 @@ const inputKeyboard = document.querySelector('.input');
 const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
                         'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
                         'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<'];
+const keyboardArr = [...keyboardKeys];
+keyboardArr.push('DELETE', 'BACKSPACE');
 
 /**
  * Creates the keyboard for the game based on the keys above.
@@ -156,7 +135,7 @@ keyboardKeys.forEach(key =>{
  * @param {character} letter 
  */
 const keyboardClick = letter =>{
-    if(letter === '<<' && curCol > 0){
+    if(curCol > 0 && (letter === '<<' || letter === 'DELETE' || letter === 'BACKSPACE')){
         deletingEntry();
     } else if(letter === 'ENTER'){
         submittingAnswer();
@@ -164,6 +143,15 @@ const keyboardClick = letter =>{
         inputLetter(letter);
     }
 };
+
+const keyboardEvent = document.addEventListener('keydown', event =>{
+    event.preventDefault();
+    keyboardArr.forEach(key =>{
+        if(key === event.key.toUpperCase()){
+            keyboardClick(event.key.toUpperCase());
+        }
+    });
+});
 
 /**
  * Deletes the previous entry before the attempt has been submitted.
@@ -189,13 +177,10 @@ const submittingAnswer = () =>{
     }
 };
 
-const nextRow = userGuess =>{
-    if(userGuess !== answer){
-        curRow++;
-        curCol = 0;
-        console.log(curRow);
-    }
-};
+/**
+ * Moves to next row if the users guess is wrong.
+ */
+const nextRow = userGuess =>{if(userGuess !== answer){curRow++; curCol = 0;}};
 
 /**
  * Will add a message to page above the game and below the restart button.
@@ -216,11 +201,14 @@ const resultMsg = userGuess =>{
  * Will input the letter into the current column before moving onto the next one.
  */
 const inputLetter = letter =>{
-    const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
-    guessInput[curRow][curCol] = letter;
-    curCol++;
-    col.textContent = letter;
-    col.setAttribute('data', letter);
+    if(letter !== '<<' && letter !== 'DELETE' && letter !== 'BACKSPACE'){
+        console.log('Your pressing ' + letter + ' Dickhead');
+        const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
+        guessInput[curRow][curCol] = letter;
+        curCol++;
+        col.textContent = letter;
+        col.setAttribute('data', letter);
+    }
 };
 
 const showGuessResults = () =>{
