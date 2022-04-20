@@ -210,7 +210,8 @@
 ### Code Snippets
 >[Wordle Clone In Javascript - Code with Ania Kubów](https://www.youtube.com/watch?v=mpby4HiElek)
 > Some of the logic used in this video was altered for use within this project. 
-
+>[Pressed Effect - GeeksforGeeks](https://www.geeksforgeeks.org/how-to-add-a-pressed-effect-on-button-click-in-css/)
+>- Code snippet taken on how to create a pressed effect for the restart button.
 
 ### Pictures
 
