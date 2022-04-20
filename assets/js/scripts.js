@@ -1,15 +1,16 @@
+
 // Header Scripts
 /**
  * This will show and hide the difficulty options of the game.
  */
-function difficultySelector() {
+ function difficultySelector() {
     const difficultyOptions = document.querySelector('#difficulty-settings');
     if (difficultyOptions.style.display === 'none') {
         difficultyOptions.style.display = 'flex';
     } else {
         difficultyOptions.style.display = 'none';
-    };
-};
+    }
+}
 
 
 // Game Scripts
@@ -47,7 +48,7 @@ function addDifficultyListener(){
             setupGame(currentDifficulty);
         });
     });
-};
+}
 
 let currentGuesses;
 let currentWordLength;
@@ -61,9 +62,9 @@ function setupGame(difficulty){
             currentWordLength = game.wordlength;
             createEmptyArrays(currentWordLength, currentGuesses);
             resetGame();
-        };
+        }
     });
-};
+}
 
 let guessInput;
 /**
@@ -77,11 +78,11 @@ function createEmptyArrays(rowLength, columnLength){
     for(let col = 0; col < columnLength; col++){
         for(let row = 0; row < rowLength; row++){
             baseArray.push('');
-        };
+        }
         guessInput.push(baseArray);
         baseArray = [];
-    };
-};
+    }
+}
 
 const gameDisplay = document.querySelector('.game');
 let curRow = 0;
@@ -105,8 +106,8 @@ function resetGame(){
         });
         gameDisplay.append(setArea);
     });
-    console.log('Game Reset')
-};
+    console.log('Game Reset');
+}
 
 
 setupGame(currentDifficulty);
@@ -160,8 +161,8 @@ function keyboardClick(letter){
         submittingAnswer();
     } else if(curCol < currentWordLength && curRow < currentGuesses) {
         inputLetter(letter);
-    };
-};
+    }
+}
 
 /**
  * Deletes the previous entry before the attempt has been submitted.
@@ -172,7 +173,7 @@ function deletingEntry(){
     col.setAttribute('data', '');
     col.textContent = '';
     guessInput[curRow][curCol] = '';
-};
+}
 
 /**
  * Handles the submitted answer either will move attempt to next row,
@@ -182,18 +183,18 @@ function submittingAnswer(){
     const inputWord = guessInput[curRow].join('');
     if(curCol === currentWordLength){
         showGuessResults();
-        nextRow(inputWord)
+        nextRow(inputWord);
         resultMsg(inputWord);
-    };
-};
+    }
+}
 
 function nextRow(userGuess){
     if(userGuess !== answer){
         curRow++;
         curCol = 0;
         console.log(curRow);
-    };
-};
+    }
+}
 
 /**
  * Will add a message to page above the game and below the restart button.
@@ -205,10 +206,10 @@ function resultMsg(userGuess){
     } else {
         if(curRow >= currentGuesses) {
             resultText.textContent = 'Try Again?';
-        };
-    };
+        }
+    }
     setTimeout(() => resultText.textContent = '', 7500);
-};
+}
 
 /**
  * Will input the letter into the current column before moving onto the next one.
@@ -219,7 +220,7 @@ function inputLetter(letter){
     curCol++;
     col.textContent = letter;
     col.setAttribute('data', letter);
-};
+}
 
 function showGuessResults(){
     const currentRow = document.querySelector('#inputRow-' + curRow).childNodes;
@@ -236,4 +237,4 @@ function showGuessResults(){
         }, 500 * colIndex);
 
     });
-};
+}
