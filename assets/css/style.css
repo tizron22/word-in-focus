@@ -2,10 +2,10 @@
 /* <!-- Global variables for sheet --> */
 
 :root{
-    --pageBackground: rgba(240, 240, 240, 1);
-    --navBackground: rgba(150, 150, 150, 1);
+    --pageBackground: rgba(189, 178, 160, 1);
+    --gameBackground: rgba(150, 150, 150, 0.502);
 
-    --buttonColour: rgba(129, 131, 132, 1);
+    --buttonColour: rgba(84, 93, 96, 1);
     --borderColour: rgba(57, 57, 60, 1);
     
 }
@@ -40,7 +40,7 @@ th, td{
 /* <!-- Header --> */
 
 header{
-    background-color: var(--navBackground);
+    border-bottom: 1px solid grey;
     position: -webkit-sticky;
 	position: sticky;
 	top: 0;
@@ -115,7 +115,7 @@ nav {
 /* <!-- Gaming Area  --> */
 .game-display{
     width: 510px;
-    height: 90vh;    
+
 }
 
 .result{
@@ -130,7 +130,9 @@ nav {
     align-items: center;
     text-align: center;
     width: 510px;
-    margin-bottom: 30px;
+    padding: 15px;
+    background-color: var(--gameBackground);
+    border-radius: 5%;
 }
 
 
@@ -154,6 +156,8 @@ nav {
     display: flex;
     flex-wrap: wrap;
     width: 510px;
+    margin-top: 15px;
+
 }
 
 .input button {
