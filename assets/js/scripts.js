@@ -12,8 +12,55 @@
     }
 };
 
-// Game Scripts
+let wordArray;
+/**
+ * This is the API method
+ */
+const randWordKeys = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Host': 'random-words5.p.rapidapi.com',
+		'X-RapidAPI-Key': '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb'
+	}
+};
 
+const wordExistKeys = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Host': 'twinword-word-graph-dictionary.p.rapidapi.com',
+		'X-RapidAPI-Key': '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb'
+	}
+};
+/**
+ * This is the API fetch that gets the data to use in the game.
+ */
+const getRandWords = () =>{
+    fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys)
+        .then(response => response.json())
+        .then(response => {
+            response.forEach(word =>{
+                checkWordExists(word);
+            });
+        })
+        .catch(err => console.error(err));
+};
+
+/**
+ * This is the API that checks the random word to make sure it exists in the dictionary
+ * @param {string} word 
+ */
+const checkWordExists = word =>{
+    fetch(`https://twinword-word-graph-dictionary.p.rapidapi.com/association/?entry=${word}`, wordExistKeys)
+    .then(response => response.json())
+    .then(response => {
+        if(response.result_msg === 'Success'){
+            wordArray.push(word.toUpperCase());
+        }
+    })
+    .catch(err => console.error(err));
+};
+
+// Game Scripts
 let currentDifficulty = document.querySelector('input[name="game-difficulty"]:checked').value;
 /** 
 * This will add an event listener to the radio buttons and change the game accordingly.
@@ -36,6 +83,7 @@ let currentWordLength;
 const setupGame = difficulty =>{
     difficultySettings.forEach(game =>{
         if(game.difficulty === difficulty){
+            wordArray = [];
             currentGuesses = game.guesses;
             currentWordLength = game.wordlength;
             resetGame();
@@ -69,6 +117,7 @@ let curCol = 0;
  * then replace it with the new amount of tiles.
  */
 const resetGame = () =>{
+    getRandWords();
     gameDisplay.innerHTML = '';
     curRow = 0;
     curCol = 0; 
@@ -86,31 +135,21 @@ const resetGame = () =>{
     });
 };
 
-
 setupGame(currentDifficulty);
 addDifficultyListener();
-
-/**
- * This is the API method
- */
-let data = {};
- const option = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com',
-		'X-RapidAPI-Key': '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb'
-	}
+let answer;
+const assignWordToAnswer = () =>{
+    const answerArrayLength = wordArray.length;
+    if(answerArrayLength > 0){
+        answer = wordArray[0];
+        wordArray.shift(answer);
+    } else {
+        getRandWords();
+        answer = wordArray[0];
+        wordArray.shift(answer);
+    };
 };
-/**
- * This is the API fetch that gets the data to use in the game.
- */
-// fetch(`https://wordsapiv1.p.rapidapi.com/words/?letterPattern=%5E%5Ba-zA-Z%5D%2B%24&letters=${currentWordLength}`, option)
-// 	.then(response => data = response.json())
-// 	.then(response =>  console.log(response))
-// 	.catch(err => console.error(err));
-// console.log(data);
 
-let answer = 'RUPPET';
 
 const inputKeyboard = document.querySelector('.input');
 const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
@@ -118,6 +157,8 @@ const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
                         'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<'];
 const keyboardArr = [...keyboardKeys];
 keyboardArr.push('DELETE', 'BACKSPACE');
+assignWordToAnswer();
+
 
 /**
  * Creates the keyboard for the game based on the keys above.
