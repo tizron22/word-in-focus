@@ -34,16 +34,16 @@ const wordExistKeys = {
 /**
  * This is the API fetch that gets the data to use in the game.
  */
-const getRandWords = () =>{
-    fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys)
-        .then(response => response.json())
-        .then(response => {
-            response.forEach(word =>{
-                checkWordExists(word);
-            });
-        })
-        .catch(err => console.error(err));
-};
+// const getRandWords = () =>{
+//     fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys)
+//         .then(response => response.json())
+//         .then(response => {
+//             response.forEach(word =>{
+//                 checkWordExists(word);
+//             });
+//         })
+//         .catch(err => console.error(err));
+// };
 
 /**
  * This is the API that checks the random word to make sure it exists in the dictionary
@@ -117,7 +117,7 @@ let curCol = 0;
  * then replace it with the new amount of tiles.
  */
 const resetGame = () =>{
-    getRandWords();
+    // getRandWords();
     gameDisplay.innerHTML = '';
     curRow = 0;
     curCol = 0; 
@@ -144,7 +144,7 @@ const assignWordToAnswer = () =>{
         answer = wordArray[0];
         wordArray.shift(answer);
     } else {
-        getRandWords();
+        // getRandWords();
         answer = wordArray[0];
         wordArray.shift(answer);
     };
@@ -158,7 +158,7 @@ const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 const keyboardArr = [...keyboardKeys];
 keyboardArr.push('DELETE', 'BACKSPACE');
 assignWordToAnswer();
-
+answer = 'ROBIN';
 
 /**
  * Creates the keyboard for the game based on the keys above.
@@ -230,6 +230,9 @@ const resultMsg = userGuess =>{
     const resultText = document.querySelector('.result'); 
     if(userGuess == answer){
         resultText.textContent = 'Congratutions';
+        increaseRound();
+        giveScore(currentDifficulty);
+        setTimeout(() => resetGame(), 5000);
     } else {
         if(curRow >= currentGuesses) {
             resultText.textContent = 'Try Again?';
@@ -265,5 +268,25 @@ const showGuessResults = () =>{
             }
         }, 500 * colIndex);
 
+    });
+};
+
+const increaseRound = () =>{
+    let currentRound = document.querySelector('.round-number');
+    let round = currentRound.textContent;
+    round++;
+    currentRound.textContent = round;
+};
+
+const giveScore = difficulty =>{
+    gamingPoints.forEach(game =>{
+        if(game.difficulty === difficulty){
+            pointsAvailable = game.points;
+            pointsForRound = (pointsAvailable / (curRow + 1));
+            const roundScore = document.querySelector('.round-score');
+            let currScore = parseFloat(roundScore.textContent);
+            let newScore = (currScore + pointsForRound)
+            roundScore.textContent = newScore;
+        }
     });
 };
