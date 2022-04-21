@@ -33,3 +33,5 @@ const gamingPoints = [
         "points": 25,
     },
 ];
+
+module.exports = {difficultySettings, gamingPoints};

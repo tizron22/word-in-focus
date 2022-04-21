@@ -1,9 +1,20 @@
-const addDifficultyListener = require('../scripts.js');
+/**
+ * @jest-environment jsdom
+ */
 
-describe("Diffculty Selection", () =>{
-    describe("Default Setting", () =>{
-        test("Should show the difficulty as medium", () =>{
-            expect(addDifficultyListener()).toBe('medium');
-        });
-    });
+const {document, inputLetter} = require('../scripts');
+
+beforeAll(() => {
+    let fs = require("fs");
+    let fileContents = fs.readFileSync("index.html", "utf-8");
+    document.open();
+    document.write(fileContents);
+    document.close();
 });
+
+
+// describe("User Letter Input", () =>{
+//     test("Should show letter R in tile when pressed", () =>{
+//         expect(inputLetter('R')).toBe('R');
+//     });
+// });

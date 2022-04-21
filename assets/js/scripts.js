@@ -1,4 +1,37 @@
 
+ const difficultySettings = [
+    {
+        "difficulty" : "easy",
+        "guesses" : 7,
+        "wordlength" : 4,
+    },
+    {
+        "difficulty" : "medium",
+        "guesses" : 6,
+        "wordlength" : 5,
+    },
+    {
+        "difficulty" : "hard",
+        "guesses" : 5,
+        "wordlength" : 6,
+    },
+];
+
+const gamingPoints = [
+    {
+        "difficulty" : "easy", 
+        "points": 5,
+    },
+    {
+        "difficulty" : "medium", 
+        "points": 15,
+    },
+    {
+        "difficulty" : "hard", 
+        "points": 25,
+    },
+];
+
 // Header Scripts
 /**
  * This will show and hide the difficulty options of the game.
@@ -61,7 +94,14 @@ const checkWordExists = word =>{
 };
 
 // Game Scripts
-let currentDifficulty = document.querySelector('input[name="game-difficulty"]:checked').value;
+// function getGameDefaultDifficulty (){
+//     const defaultDifficulty = document.querySelector('input[name="game-difficulty"]:checked');
+//     const value = defaultDifficulty.value;
+//     return value;
+// };
+let currentDifficulty = 'medium';
+
+console.log(currentDifficulty);
 /** 
 * This will add an event listener to the radio buttons and change the game accordingly.
 */
@@ -109,7 +149,6 @@ const createEmptyArrays = (rowLength, columnLength) =>{
     }
 };
 
-const gameDisplay = document.querySelector('.game');
 let curRow = 0;
 let curCol = 0; 
 /**
@@ -118,6 +157,7 @@ let curCol = 0;
  */
 const resetGame = () =>{
     // getRandWords();
+    const gameDisplay = document.querySelector('.game');
     gameDisplay.innerHTML = '';
     curRow = 0;
     curCol = 0; 
@@ -285,8 +325,10 @@ const giveScore = difficulty =>{
             pointsForRound = (pointsAvailable / (curRow + 1));
             const roundScore = document.querySelector('.round-score');
             let currScore = parseFloat(roundScore.textContent);
-            let newScore = (currScore + pointsForRound)
+            let newScore = (currScore + pointsForRound);
             roundScore.textContent = newScore;
         }
     });
 };
+
+module.exports = inputLetter;
