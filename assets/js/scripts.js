@@ -72,7 +72,7 @@ const getRandWords = () =>{
         .then(response => response.json())
         .then(response => {
             response.forEach(word =>{
-                checkWordExists(word);
+                checkWordExists(word, true);
             });
             assignWordToAnswer();
         })
@@ -83,12 +83,14 @@ const getRandWords = () =>{
  * This is the API that checks the random word to make sure it exists in the dictionary
  * @param {string} word 
  */
-const checkWordExists = word =>{
+const checkWordExists = (word, randWord) =>{
     fetch(`https://twinword-word-graph-dictionary.p.rapidapi.com/association/?entry=${word}`, wordExistKeys)
     .then(response => response.json())
     .then(response => {
-        if(response.result_msg === 'Success'){
+        if(response.result_msg === 'Success' && randWord === true){
             wordArray.push(word.toUpperCase());
+        } else if(response.result_msg === 'Success' && randWord === false){
+            console.log('else if');
         }
     })
     .catch(err => console.error(err));
