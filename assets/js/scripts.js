@@ -1,4 +1,4 @@
-
+//Game Settings
  const difficultySettings = [
     {
         "difficulty" : "easy",
@@ -131,48 +131,51 @@ const setupGame = difficulty =>{
     });
 };
 
-let guessInput;
+
 /**
  * Creates empty arrays for the user inputs their guesses into.
  * @param {number} rowLength 
  * @param {number} columnLength 
  */
 const createEmptyArrays = (rowLength, columnLength) =>{
-    guessInput = [];
+    userInput = [];
     let baseArray = [];
     for(let col = 0; col < columnLength; col++){
         for(let row = 0; row < rowLength; row++){
             baseArray.push('');
         }
-        guessInput.push(baseArray);
+        userInput.push(baseArray);
         baseArray = [];
     }
+    return userInput;
 };
 
-let curRow = 0;
-let curCol = 0; 
+let curRow;
+let curCol; 
 /**
  * This will reset the game by removing the innerHTML from the div for the tiles and 
  * then replace it with the new amount of tiles.
  */
 const resetGame = () =>{
     // getRandWords();
-    const gameDisplay = document.querySelector('.game');
-    gameDisplay.innerHTML = '';
-    curRow = 0;
-    curCol = 0; 
-    createEmptyArrays(currentWordLength, currentGuesses);
-    guessInput.forEach((guessRow, guessRowIndex) =>{
-        const setArea = document.createElement('div');
-        setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
-        guessRow.forEach((guess, guessIndex) =>{
-            const rowArea = document.createElement('div');
-            rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-inputColumn-' + guessIndex);
-            rowArea.classList.add('tile');
-            setArea.append(rowArea);
+    let gameDisplay = document.querySelector('.game');
+    if(gameDisplay !== null){ 
+        gameDisplay.innerHTML = '';
+        curRow = 0;
+        curCol = 0; 
+        guessInput = createEmptyArrays(currentWordLength, currentGuesses);
+        guessInput.forEach((guessRow, guessRowIndex) =>{
+            const setArea = document.createElement('div');
+            setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
+            guessRow.forEach((guess, guessIndex) =>{
+                const rowArea = document.createElement('div');
+                rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-inputColumn-' + guessIndex);
+                rowArea.classList.add('tile');
+                setArea.append(rowArea);
+            });
+            gameDisplay.append(setArea);
         });
-        gameDisplay.append(setArea);
-    });
+    }
 };
 
 setupGame(currentDifficulty);
@@ -191,7 +194,6 @@ const assignWordToAnswer = () =>{
 };
 
 
-const inputKeyboard = document.querySelector('.input');
 const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
                         'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
                         'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<'];
@@ -204,12 +206,16 @@ answer = 'ROBIN';
  * Creates the keyboard for the game based on the keys above.
  */
 keyboardKeys.forEach(key =>{
-    const createKeyboard = document.createElement('button');
-    createKeyboard.textContent = key;
-    createKeyboard.setAttribute('id', key);
-    createKeyboard.addEventListener('click', () => keyboardClick(key));   
-    inputKeyboard.append(createKeyboard);
+    const inputKeyboard = document.querySelector('.input');
+    if(inputKeyboard !== null){
+        const createKeyboard = document.createElement('button');
+        createKeyboard.textContent = key;
+        createKeyboard.setAttribute('id', key);
+        createKeyboard.addEventListener('click', () => keyboardClick(key)); 
+        inputKeyboard.append(createKeyboard);
+    }
 });
+
 
 /**
  * Based on what the user clicks on will create a different action. 
@@ -331,4 +337,4 @@ const giveScore = difficulty =>{
     });
 };
 
-module.exports = inputLetter;
+module.exports = createEmptyArrays;
