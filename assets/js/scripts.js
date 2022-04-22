@@ -97,14 +97,8 @@ const checkWordExists = (word, randWord) =>{
 };
 
 // Game Scripts
-// function getGameDefaultDifficulty (){
-//     const defaultDifficulty = document.querySelector('input[name="game-difficulty"]:checked');
-//     const value = defaultDifficulty.value;
-//     return value;
-// };
-let currentDifficulty = 'medium';
+let currentDifficulty =  document.querySelector('input[name="game-difficulty"]:checked').value;
 
-console.log(currentDifficulty);
 /** 
 * This will add an event listener to the radio buttons and change the game accordingly.
 */
@@ -162,23 +156,21 @@ let curCol;
 const resetGame = () =>{
     getRandWords();
     let gameDisplay = document.querySelector('.game');
-    if(gameDisplay !== null){ 
-        gameDisplay.innerHTML = '';
-        curRow = 0;
-        curCol = 0; 
-        guessInput = createEmptyArrays(currentWordLength, currentGuesses);
-        guessInput.forEach((guessRow, guessRowIndex) =>{
-            const setArea = document.createElement('div');
-            setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
-            guessRow.forEach((guess, guessIndex) =>{
-                const rowArea = document.createElement('div');
-                rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-inputColumn-' + guessIndex);
-                rowArea.classList.add('tile');
-                setArea.append(rowArea);
-            });
-            gameDisplay.append(setArea);
+    gameDisplay.innerHTML = '';
+    curRow = 0;
+    curCol = 0; 
+    guessInput = createEmptyArrays(currentWordLength, currentGuesses);
+    guessInput.forEach((guessRow, guessRowIndex) =>{
+        const setArea = document.createElement('div');
+        setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
+        guessRow.forEach((guess, guessIndex) =>{
+            const rowArea = document.createElement('div');
+            rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-inputColumn-' + guessIndex);
+            rowArea.classList.add('tile');
+            setArea.append(rowArea);
         });
-    }
+        gameDisplay.append(setArea);
+    });
 };
 
 setupGame(currentDifficulty);
@@ -207,13 +199,11 @@ keyboardArr.push('DELETE', 'BACKSPACE');
  */
 keyboardKeys.forEach(key =>{
     const inputKeyboard = document.querySelector('.input');
-    if(inputKeyboard !== null){
-        const createKeyboard = document.createElement('button');
-        createKeyboard.textContent = key;
-        createKeyboard.setAttribute('id', key);
-        createKeyboard.addEventListener('click', () => keyboardClick(key)); 
-        inputKeyboard.append(createKeyboard);
-    }
+    const createKeyboard = document.createElement('button');
+    createKeyboard.textContent = key;
+    createKeyboard.setAttribute('id', key);
+    createKeyboard.addEventListener('click', () => keyboardClick(key)); 
+    inputKeyboard.append(createKeyboard);
 });
 
 
