@@ -67,16 +67,17 @@ const wordExistKeys = {
 /**
  * This is the API fetch that gets the data to use in the game.
  */
-// const getRandWords = () =>{
-//     fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys)
-//         .then(response => response.json())
-//         .then(response => {
-//             response.forEach(word =>{
-//                 checkWordExists(word);
-//             });
-//         })
-//         .catch(err => console.error(err));
-// };
+const getRandWords = () =>{
+    fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys)
+        .then(response => response.json())
+        .then(response => {
+            response.forEach(word =>{
+                checkWordExists(word);
+            });
+            assignWordToAnswer();
+        })
+        .catch(err => console.error(err));
+};
 
 /**
  * This is the API that checks the random word to make sure it exists in the dictionary
@@ -157,7 +158,7 @@ let curCol;
  * then replace it with the new amount of tiles.
  */
 const resetGame = () =>{
-    // getRandWords();
+    getRandWords();
     let gameDisplay = document.querySelector('.game');
     if(gameDisplay !== null){ 
         gameDisplay.innerHTML = '';
@@ -187,20 +188,17 @@ const assignWordToAnswer = () =>{
         answer = wordArray[0];
         wordArray.shift(answer);
     } else {
-        // getRandWords();
+        getRandWords();
         answer = wordArray[0];
         wordArray.shift(answer);
     };
 };
-
 
 const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
                         'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
                         'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<<'];
 const keyboardArr = [...keyboardKeys];
 keyboardArr.push('DELETE', 'BACKSPACE');
-assignWordToAnswer();
-answer = 'ROBIN';
 
 /**
  * Creates the keyboard for the game based on the keys above.
