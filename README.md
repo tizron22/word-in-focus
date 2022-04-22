@@ -212,6 +212,9 @@
 > Some of the logic used in this video was altered for use within this project. 
 >[Pressed Effect - GeeksforGeeks](https://www.geeksforgeeks.org/how-to-add-a-pressed-effect-on-button-click-in-css/)
 >- Code snippet taken on how to create a pressed effect for the restart button.
+>[Jest Dom Display - Ben Kavanagh](https://github.com/BAK2K3)
+>- When testing with Jest Issues occured where the DOM wasn't being opened before the test which caused errors with the automated testing. 
+>- Spoke to Ben provided a solution for the code to work. 
 
 ### Pictures
 
