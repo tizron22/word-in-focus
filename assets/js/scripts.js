@@ -318,7 +318,7 @@ const showGuessResults = () =>{
 };
 
 const increaseRound = () =>{
-    let currentRound = document.querySelector('.round-number');
+    const currentRound = document.querySelector('.round-number');
     let round = currentRound.textContent;
     round++;
     currentRound.textContent = round;
@@ -335,6 +335,14 @@ const giveScore = difficulty =>{
             roundScore.textContent = newScore;
         }
     });
+};
+
+const restartGame = () =>{
+    const roundScore = document.querySelector('.round-score');
+    const currentRound = document.querySelector('.round-number');
+    currentRound.textContent = 1;
+    roundScore.textContent = 0;
+    resetGame();
 };
 
 module.exports = createEmptyArrays;
