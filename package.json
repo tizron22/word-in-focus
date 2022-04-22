@@ -18,5 +18,8 @@
   "homepage": "https://github.com/tizron22/word-in-focus#readme",
   "devDependencies": {
     "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.6.2"
   }
 }
