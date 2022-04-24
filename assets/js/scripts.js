@@ -1,5 +1,5 @@
 //Game Settings
- const difficultySettings = [
+const difficultySettings = [
     {
         "difficulty" : "easy",
         "guesses" : 7,
@@ -135,7 +135,7 @@ const setupGame = difficulty =>{
  * @param {number} columnLength 
  */
 const createEmptyArrays = (rowLength, columnLength) =>{
-    userInput = [];
+    let userInput = [];
     let baseArray = [];
     for(let col = 0; col < columnLength; col++){
         for(let row = 0; row < rowLength; row++){
@@ -159,7 +159,7 @@ const resetGame = () =>{
     gameDisplay.innerHTML = '';
     curRow = 0;
     curCol = 0; 
-    guessInput = createEmptyArrays(currentWordLength, currentGuesses);
+    let guessInput = createEmptyArrays(currentWordLength, currentGuesses);
     guessInput.forEach((guessRow, guessRowIndex) =>{
         const setArea = document.createElement('div');
         setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
@@ -333,6 +333,17 @@ const restartGame = () =>{
     currentRound.textContent = 1;
     roundScore.textContent = 0;
     resetGame();
+};
+
+
+const loaderControl = state =>{
+    const loaderElement = document.querySelector('#loader-holder');
+    const stateLower = state.toString().toUpperCase();
+    if (stateLower === 'ON'){
+        loaderElement.classList.add('loader');
+    } else if(stateLower === 'OFF'){
+        loaderElement.classList.remove('loader');
+    }
 };
 
 module.exports = createEmptyArrays;
