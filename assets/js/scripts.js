@@ -32,6 +32,28 @@ const gamingPoints = [
     },
 ];
 
+/**
+ * This function will show the spinner to indicate that the gane is loading. 
+ * In the variable eithewr select On or Off.
+ * @param {string} state 
+ * @returns Loading Spinner State
+ */
+const loaderControl = state =>{
+    const loaderElement = document.querySelector('#loader-holder');
+    const stateLower = state.toString().toUpperCase();
+    if (stateLower === 'ON'){
+        loaderElement.classList.add('loader');
+    } else if(stateLower === 'OFF'){
+        loaderElement.classList.remove('loader');
+    }
+    return stateLower;
+};
+
+/**
+ * This will obtain the default difficulty to be used.
+ */
+let currentDifficulty =  document.querySelector('input[name="game-difficulty"]:checked').value;
+
 // Header Scripts
 /**
  * This will show and hide the difficulty options of the game.
@@ -45,7 +67,28 @@ const gamingPoints = [
     }
 };
 
+let answer;
 let wordArray;
+
+const assignWordToAnswer = wordArray =>{
+    const answerArrayLength = wordArray.length;
+    if(answerArrayLength > 1){
+        answer =  wordArray[0];
+         wordArray.shift(answer);
+    } else if (wordArray === []){
+        wordArray = getRandWords();
+        answer =  wordArray[0];
+        console.log(answer);
+    } else {
+        console.log('I broke :(');
+    }
+};
+
+/**
+ * The API key which does not change and can be used for both calls.
+ */
+const RAPID_API_KEY = '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb';
+
 /**
  * This is the API method
  */
@@ -53,7 +96,7 @@ const randWordKeys = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Host': 'random-words5.p.rapidapi.com',
-		'X-RapidAPI-Key': '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb'
+		'X-RapidAPI-Key': RAPID_API_KEY
 	}
 };
 
@@ -61,56 +104,98 @@ const wordExistKeys = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Host': 'twinword-word-graph-dictionary.p.rapidapi.com',
-		'X-RapidAPI-Key': '8fbc3322bfmsh352b091156d869cp1f1b97jsn032c122a82fb'
+		'X-RapidAPI-Key': RAPID_API_KEY
 	}
-};
-/**
- * This is the API fetch that gets the data to use in the game.
- */
-const getRandWords = () =>{
-    fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys)
-        .then(response => response.json())
-        .then(response => {
-            response.forEach(word =>{
-                checkWordExists(word, true);
-            });
-            assignWordToAnswer();
-        })
-        .catch(err => console.error(err));
 };
 
 /**
  * This is the API that checks the random word to make sure it exists in the dictionary
  * @param {string} word 
  */
-const checkWordExists = (word, randWord) =>{
-    fetch(`https://twinword-word-graph-dictionary.p.rapidapi.com/association/?entry=${word}`, wordExistKeys)
-    .then(response => response.json())
-    .then(response => {
-        if(response.result_msg === 'Success' && randWord === true){
-            wordArray.push(word.toUpperCase());
-        } else if(response.result_msg === 'Success' && randWord === false){
+ const checkWordExists = async (word, randWord) =>{   
+    try{
+        const response = await fetch(`https://twinword-word-graph-dictionary.p.rapidapi.com/association/?entry=${word}`, wordExistKeys);
+        const jsonData = await response.json();   
+        if(jsonData.result_msg === 'Success' && randWord === true){
+            const vaildWord = word.toUpperCase();
+            return vaildWord;
+        } else if(jsonData.result_msg === 'Success' && randWord === false){
             console.log('else if');
         }
-    })
-    .catch(err => console.error(err));
+    } catch (err){
+        console.log('I is broken bro');
+    }
+    
+};
+
+/**
+ * This is the API fetch that gets the data to use in the game.
+ */
+const getRandWords = async () =>{
+    const arrayItem = [];
+    try{
+        const response = await fetch(`https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`, randWordKeys);
+        const jsonData = await response.json();
+        jsonData.forEach(async word =>{
+            const checkWord = await checkWordExists(word, true);
+            await arrayItem.push(checkWord);
+        })
+        return await assignWordToAnswer(arrayItem);
+        console.log(arrayItem);
+    } catch(err){
+    }     
+};
+
+
+
+/**
+ * Creates empty arrays for the user inputs their guesses into.
+ * @param {number} rowLength 
+ * @param {number} columnLength 
+ */
+ const createEmptyArrays = (rowLength, columnLength) =>{
+    let userInput = [];
+    let baseArray = [];
+    for(let col = 0; col < columnLength; col++){
+        for(let row = 0; row < rowLength; row++){
+            baseArray.push('');
+        }
+        userInput.push(baseArray);
+        baseArray = [];
+    }
+    return userInput;
 };
 
 // Game Scripts
-let currentDifficulty =  document.querySelector('input[name="game-difficulty"]:checked').value;
 
-/** 
-* This will add an event listener to the radio buttons and change the game accordingly.
-*/
-const addDifficultyListener = () =>{
-    const difficultyRadios = document.querySelectorAll('input[name="game-difficulty"]');
-    difficultyRadios.forEach(option =>{
-        option.addEventListener('click', () => {
-            currentDifficulty = option.value;
-            setupGame(currentDifficulty);
+
+let curRow;
+let curCol; 
+let guessInput;
+/**
+ * This will reset the game by removing the innerHTML from the div for the tiles and 
+ * then replace it with the new amount of tiles.
+ */
+const resetGame = async () =>{
+    wordArray = await getRandWords();
+    let gameDisplay = document.querySelector('.game');
+    gameDisplay.innerHTML = '';
+    curRow = 0;
+    curCol = 0; 
+    guessInput = createEmptyArrays(currentWordLength, currentGuesses);
+    guessInput.forEach((guessRow, guessRowIndex) =>{
+        const setArea = document.createElement('div');
+        setArea.setAttribute('id', `inputRow-${guessRowIndex}`);
+        guessRow.forEach((guess, guessIndex) =>{
+            const rowArea = document.createElement('div');
+            rowArea.setAttribute('id', `inputRow-${guessRowIndex}-inputColumn-${guessIndex}`);
+            rowArea.classList.add('tile');
+            setArea.append(rowArea);
         });
+        gameDisplay.append(setArea);
     });
 };
+
 
 let currentGuesses;
 let currentWordLength;
@@ -128,65 +213,32 @@ const setupGame = difficulty =>{
     });
 };
 
-
-/**
- * Creates empty arrays for the user inputs their guesses into.
- * @param {number} rowLength 
- * @param {number} columnLength 
- */
-const createEmptyArrays = (rowLength, columnLength) =>{
-    let userInput = [];
-    let baseArray = [];
-    for(let col = 0; col < columnLength; col++){
-        for(let row = 0; row < rowLength; row++){
-            baseArray.push('');
-        }
-        userInput.push(baseArray);
-        baseArray = [];
-    }
-    return userInput;
+const restartGame = () =>{
+    const roundScore = document.querySelector('.round-score');
+    const currentRound = document.querySelector('.round-number');
+    currentRound.textContent = 1;
+    roundScore.textContent = 0;
+    resetGame();
 };
 
-let curRow;
-let curCol; 
-/**
- * This will reset the game by removing the innerHTML from the div for the tiles and 
- * then replace it with the new amount of tiles.
- */
-const resetGame = () =>{
-    getRandWords();
-    let gameDisplay = document.querySelector('.game');
-    gameDisplay.innerHTML = '';
-    curRow = 0;
-    curCol = 0; 
-    let guessInput = createEmptyArrays(currentWordLength, currentGuesses);
-    guessInput.forEach((guessRow, guessRowIndex) =>{
-        const setArea = document.createElement('div');
-        setArea.setAttribute('id', 'inputRow-' + guessRowIndex);
-        guessRow.forEach((guess, guessIndex) =>{
-            const rowArea = document.createElement('div');
-            rowArea.setAttribute('id', 'inputRow-' + guessRowIndex + '-inputColumn-' + guessIndex);
-            rowArea.classList.add('tile');
-            setArea.append(rowArea);
+
+/** 
+* This will add an event listener to the radio buttons and change the game accordingly.
+*/
+const addDifficultyListener = () =>{
+    const difficultyRadios = document.querySelectorAll('input[name="game-difficulty"]');
+    difficultyRadios.forEach(option =>{
+        option.addEventListener('click', () => {
+            currentDifficulty = option.value;
+            setupGame(currentDifficulty);
         });
-        gameDisplay.append(setArea);
     });
 };
 
+
 setupGame(currentDifficulty);
 addDifficultyListener();
-let answer;
-const assignWordToAnswer = () =>{
-    const answerArrayLength = wordArray.length;
-    if(answerArrayLength > 0){
-        answer = wordArray[0];
-        wordArray.shift(answer);
-    } else {
-        getRandWords();
-        answer = wordArray[0];
-        wordArray.shift(answer);
-    };
-};
+
 
 const keyboardKeys = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
                         'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'ENTER',
@@ -209,7 +261,7 @@ keyboardKeys.forEach(key =>{
 
 /**
  * Based on what the user clicks on will create a different action. 
- * @param {character} letter 
+ * @param {string} letter 
  */
 const keyboardClick = letter =>{
     if(curCol > 0 && (letter === '<<' || letter === 'DELETE' || letter === 'BACKSPACE')){
@@ -235,23 +287,10 @@ const keyboardEvent = document.addEventListener('keydown', event =>{
  */
 const deletingEntry = () =>{
     curCol--;
-    const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
+    const col = document.querySelector(`#inputRow-${curRow}-inputColumn-${curCol}`);
     col.setAttribute('data', '');
     col.textContent = '';
     guessInput[curRow][curCol] = '';
-};
-
-/**
- * Handles the submitted answer either will move attempt to next row,
- * ends the game or move on to the next round.  
- */
-const submittingAnswer = () =>{
-    const inputWord = guessInput[curRow].join('');
-    if(curCol === currentWordLength){
-        showGuessResults();
-        nextRow(inputWord);
-        resultMsg(inputWord);
-    }
 };
 
 /**
@@ -282,7 +321,7 @@ const resultMsg = userGuess =>{
  */
 const inputLetter = letter =>{
     if(letter !== '<<' && letter !== 'DELETE' && letter !== 'BACKSPACE'){
-        const col = document.querySelector('#inputRow-' + curRow + '-inputColumn-' + curCol);
+        const col = document.querySelector(`#inputRow-${curRow}-inputColumn-${curCol}`);
         guessInput[curRow][curCol] = letter;
         curCol++;
         col.textContent = letter;
@@ -291,7 +330,7 @@ const inputLetter = letter =>{
 };
 
 const showGuessResults = () =>{
-    const currentRow = document.querySelector('#inputRow-' + curRow).childNodes;
+    const currentRow = document.querySelector(`#inputRow-${curRow}`).childNodes;
     currentRow.forEach((col, colIndex) =>{
         const colLetter = col.getAttribute('data');
         setTimeout(() =>{
@@ -327,23 +366,19 @@ const giveScore = difficulty =>{
     });
 };
 
-const restartGame = () =>{
-    const roundScore = document.querySelector('.round-score');
-    const currentRound = document.querySelector('.round-number');
-    currentRound.textContent = 1;
-    roundScore.textContent = 0;
-    resetGame();
-};
-
-
-const loaderControl = state =>{
-    const loaderElement = document.querySelector('#loader-holder');
-    const stateLower = state.toString().toUpperCase();
-    if (stateLower === 'ON'){
-        loaderElement.classList.add('loader');
-    } else if(stateLower === 'OFF'){
-        loaderElement.classList.remove('loader');
+/**
+ * Handles the submitted answer either will move attempt to next row,
+ * ends the game or move on to the next round.  
+ */
+ const submittingAnswer = () =>{
+    const inputWord = guessInput[curRow].join('');
+    if(curCol === currentWordLength){
+        showGuessResults();
+        nextRow(inputWord);
+        resultMsg(inputWord);
     }
 };
+
+
 
 module.exports = createEmptyArrays;
