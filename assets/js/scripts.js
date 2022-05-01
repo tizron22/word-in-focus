@@ -282,6 +282,7 @@ keyboardArr.push("DELETE", "BACKSPACE");
 
 /**
  * Creates the keyboard for the game based on the keys above.
+ * @param {string} key
  */
 keyboardKeys.forEach((key) => {
   const inputKeyboard = document.querySelector(".input");
@@ -379,6 +380,7 @@ const showGuessResults = () => {
   const currentRow = document.querySelector(`#inputRow-${curRow}`).childNodes;
   currentRow.forEach((col, colIndex) => {
     const colLetter = col.getAttribute("data");
+    col.classList.add("tile-animation");
     setTimeout(() => {
       if (colLetter === answer[colIndex]) {
         col.style.backgroundColor = "green";
@@ -387,7 +389,8 @@ const showGuessResults = () => {
       } else {
         col.style.backgroundColor = "grey";
       }
-    }, 250 * colIndex);
+      col.classList.remove("tile-animation");
+    }, 150 * colIndex);
   });
 };
 
