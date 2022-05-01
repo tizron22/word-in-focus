@@ -4,30 +4,18 @@ const difficultySettings = [
     difficulty: "easy",
     guesses: 7,
     wordlength: 4,
+    points: 5,
   },
   {
     difficulty: "medium",
     guesses: 6,
     wordlength: 5,
+    points: 15,
   },
   {
     difficulty: "hard",
     guesses: 5,
     wordlength: 6,
-  },
-];
-
-const gamingPoints = [
-  {
-    difficulty: "easy",
-    points: 5,
-  },
-  {
-    difficulty: "medium",
-    points: 15,
-  },
-  {
-    difficulty: "hard",
     points: 25,
   },
 ];
@@ -46,7 +34,6 @@ const loaderControl = (state) => {
   } else if (stateLower === "OFF") {
     loaderElement.classList.remove("loader");
   }
-  return stateLower;
 };
 
 /**
@@ -120,7 +107,6 @@ const checkWordExists = async (word) => {
       `https://twinword-word-graph-dictionary.p.rapidapi.com/association/?entry=${word}`,
       wordExistKeys
     );
-    const jsonData = await response.json();
     if (response.status === 200) {
       const vaildWord = word.toUpperCase();
       return vaildWord;
@@ -413,7 +399,7 @@ const increaseRound = () => {
 };
 
 const giveScore = (difficulty) => {
-  gamingPoints.forEach((game) => {
+  difficultySettings.forEach((game) => {
     if (game.difficulty === difficulty) {
       const pointsAvailable = game.points;
       const pointsForRound = pointsAvailable / (curRow + 1);
