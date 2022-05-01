@@ -60,14 +60,19 @@ let currentDifficulty = document.querySelector(
 /**
  * This will show and hide the difficulty options of the game.
  */
-const difficultySelector = () => {
-  const difficultyOptions = document.querySelector("#difficulty-settings");
-  if (difficultyOptions.style.display === "flex") {
-    difficultyOptions.style.display = "none";
+const difficultySelector = (menu) => {
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
   } else {
-    difficultyOptions.style.display = "flex";
+    menu.style.display = "flex";
   }
 };
+
+const menuSelector = document.querySelector("#dropdown-menu-nav");
+menuSelector.addEventListener("click", () => {
+  const menu = document.querySelector("#difficulty-settings");
+  difficultySelector(menu);
+});
 
 let answer;
 let wordArray;
@@ -182,6 +187,7 @@ let guessInput;
  * then replace it with the new amount of tiles.
  */
 const resetGame = async () => {
+  loaderControl("ON");
   wordArray = await getRandWords();
   // await assignWordToAnswer(wordArray);
   // console.log(wordArray);
@@ -204,6 +210,7 @@ const resetGame = async () => {
     });
     gameDisplay.append(setArea);
   });
+  loaderControl("OFF");
 };
 
 let currentGuesses;
@@ -229,6 +236,15 @@ const restartGame = () => {
   roundScore.textContent = 0;
   resetGame();
 };
+
+const restartButtonClick = () => {
+  const buttonClick = document.querySelector("#restart");
+  buttonClick.addEventListener("click", () => {
+    console.log("You clicked me");
+    restartGame();
+  });
+};
+restartButtonClick();
 
 /**
  * This will add an event listener to the radio buttons and change the game accordingly.
@@ -387,7 +403,7 @@ const showGuessResults = () => {
       } else {
         col.style.backgroundColor = "grey";
       }
-    }, 500 * colIndex);
+    }, 100 * colIndex);
   });
 };
 
@@ -401,11 +417,11 @@ const increaseRound = () => {
 const giveScore = (difficulty) => {
   gamingPoints.forEach((game) => {
     if (game.difficulty === difficulty) {
-      pointsAvailable = game.points;
-      pointsForRound = pointsAvailable / (curRow + 1);
+      const pointsAvailable = game.points;
+      const pointsForRound = pointsAvailable / (curRow + 1);
       const roundScore = document.querySelector(".round-score");
-      let currScore = parseFloat(roundScore.textContent);
-      let newScore = currScore + pointsForRound;
+      const currScore = parseFloat(roundScore.textContent);
+      const newScore = currScore + pointsForRound;
       roundScore.textContent = newScore;
     }
   });
