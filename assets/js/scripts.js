@@ -22,9 +22,8 @@ const difficultySettings = [
 
 /**
  * This function will show the spinner to indicate that the gane is loading.
- * In the variable eithewr select On or Off.
+ * In the variable either select On or Off.
  * @param {string} state
- * @returns Loading Spinner State
  */
 const loaderControl = (state) => {
   const loaderElement = document.querySelector("#loader-holder");
@@ -46,6 +45,7 @@ let currentDifficulty = document.querySelector(
 // Header Scripts
 /**
  * This will show and hide the difficulty options of the game.
+ * @param {string} menu
  */
 const difficultySelector = (menu) => {
   if (menu.style.display === "flex") {
@@ -55,6 +55,9 @@ const difficultySelector = (menu) => {
   }
 };
 
+/**
+ * Adds event listener when the hamburger menu is clicked.
+ */
 const menuSelector = document.querySelector("#dropdown-menu-nav");
 menuSelector.addEventListener("click", () => {
   const menu = document.querySelector("#difficulty-settings");
@@ -64,6 +67,9 @@ menuSelector.addEventListener("click", () => {
 let answer;
 let wordArray;
 
+/**
+ * Assigns the first word of the array to the answer variable.
+ */
 const assignWordToAnswer = async () => {
   if (!wordArray.length > 1) {
     wordArray = await getRandWords();
@@ -199,6 +205,7 @@ let currentGuesses;
 let currentWordLength;
 /**
  * This sets up the game and changes the user input array based on difficulty.
+ * @param {string} difficulty
  */
 const setupGame = (difficulty) => {
   difficultySettings.forEach((game) => {
@@ -212,6 +219,9 @@ const setupGame = (difficulty) => {
   });
 };
 
+/**
+ * Restarts the display and calls the resetGame function.
+ */
 const restartGame = () => {
   const roundScore = document.querySelector(".round-score");
   const currentRound = document.querySelector(".round-number");
@@ -220,6 +230,9 @@ const restartGame = () => {
   resetGame();
 };
 
+/**
+ * Adds event listener to the restart game button.
+ */
 const restartButtonClick = () => {
   const buttonClick = document.querySelector("#restart");
   buttonClick.addEventListener("click", () => {
@@ -310,6 +323,9 @@ const keyboardClick = (letter) => {
   }
 };
 
+/**
+ * Adds event listener when the keyboard is used instead of mouse.
+ */
 const keyboardEvent = document.addEventListener("keydown", (event) => {
   event.preventDefault();
   keyboardArr.forEach((key) => {
@@ -334,6 +350,7 @@ const deletingEntry = () => {
 
 /**
  * Moves to next row if the users guess is wrong.
+ * @param {string} userGuess
  */
 const nextRow = (userGuess) => {
   if (userGuess !== answer) {
@@ -344,6 +361,7 @@ const nextRow = (userGuess) => {
 
 /**
  * Will add a message to page above the game and below the restart button.
+ * @param {string} userGuess
  */
 const resultMsg = (userGuess) => {
   const resultText = document.querySelector(".result");
@@ -363,6 +381,7 @@ const resultMsg = (userGuess) => {
 
 /**
  * Will input the letter into the current column before moving onto the next one.
+ * @param {string} letter
  */
 const inputLetter = (letter) => {
   if (letter !== "<<" && letter !== "DELETE" && letter !== "BACKSPACE") {
@@ -376,6 +395,10 @@ const inputLetter = (letter) => {
   }
 };
 
+/**
+ * On submitting a guess will shake the tiles and show the user if the letter in the tiles of the word
+ * is close, correct or incorrect.
+ */
 const showGuessResults = () => {
   const currentRow = document.querySelector(`#inputRow-${curRow}`).childNodes;
   currentRow.forEach((col, colIndex) => {
@@ -394,6 +417,9 @@ const showGuessResults = () => {
   });
 };
 
+/**
+ * Increases the round on each correct guess.
+ */
 const increaseRound = () => {
   const currentRound = document.querySelector(".round-number");
   let round = currentRound.textContent;
@@ -401,6 +427,10 @@ const increaseRound = () => {
   currentRound.textContent = round;
 };
 
+/**
+ * On a correct guess this will assign the points awarded for the round based on the guesses given.
+ * @param {string} difficulty
+ */
 const giveScore = (difficulty) => {
   difficultySettings.forEach((game) => {
     if (game.difficulty === difficulty) {
@@ -429,6 +459,9 @@ const savingDataToLocal = (score) => {
   }
 };
 
+/**
+ * Checks if there is any local data if not creates one called highscore and sets it at 0.
+ */
 const checkLocalData = () => {
   const savedScore = localStorage.getItem("highScore");
   const highScoreEle = document.querySelector("#high-score-number");
