@@ -121,14 +121,16 @@ const checkWordExists = async (word) => {
       wordExistKeys
     );
     const jsonData = await response.json();
-    if (jsonData.result_msg === "Success") {
+    if (response.status === 200) {
       const vaildWord = word.toUpperCase();
       return vaildWord;
-    } else if (jsonData.result_msg === "Success") {
+    } else if (response.status === 200) {
       return "";
     }
   } catch (err) {
-    console.log("I is broken bro");
+    const resultText = document.querySelector(".result");
+    resultText.textContent =
+      "An Error has been found, please restart the game.";
   }
 };
 
@@ -142,20 +144,15 @@ const getRandWords = async () => {
       randWordKeys
     );
     const jsonData = await response.json();
-
     const validWords = await Promise.all(jsonData.map(checkWordExists));
     const words = validWords.filter((word) => word !== "");
 
-    const arrayLength = words.length;
     wordArray = words;
     assignWordToAnswer();
-    console.log(arrayLength);
-    console.log(arrayItem);
-    return arrayItem;
-
-    // await assignWordToAnswer(arrayItem);
   } catch (err) {
-  } finally {
+    const resultText = document.querySelector(".result");
+    resultText.textContent =
+      "An Error has been found, please restart the game.";
   }
 };
 
@@ -187,7 +184,6 @@ let guessInput;
  * then replace it with the new amount of tiles.
  */
 const resetGame = async () => {
-  loaderControl("ON");
   wordArray = await getRandWords();
   // await assignWordToAnswer(wordArray);
   // console.log(wordArray);
@@ -221,6 +217,7 @@ let currentWordLength;
 const setupGame = (difficulty) => {
   difficultySettings.forEach((game) => {
     if (game.difficulty === difficulty) {
+      loaderControl("ON");
       wordArray = [];
       currentGuesses = game.guesses;
       currentWordLength = game.wordlength;
@@ -240,7 +237,7 @@ const restartGame = () => {
 const restartButtonClick = () => {
   const buttonClick = document.querySelector("#restart");
   buttonClick.addEventListener("click", () => {
-    console.log("You clicked me");
+    loaderControl("ON");
     restartGame();
   });
 };
@@ -365,6 +362,7 @@ const resultMsg = (userGuess) => {
   const resultText = document.querySelector(".result");
   if (userGuess == answer) {
     resultText.textContent = "Congratutions";
+    loaderControl("ON");
     increaseRound();
     giveScore(currentDifficulty);
     setTimeout(() => resetGame(), 5000);
@@ -403,7 +401,7 @@ const showGuessResults = () => {
       } else {
         col.style.backgroundColor = "grey";
       }
-    }, 100 * colIndex);
+    }, 250 * colIndex);
   });
 };
 
@@ -423,9 +421,31 @@ const giveScore = (difficulty) => {
       const currScore = parseFloat(roundScore.textContent);
       const newScore = currScore + pointsForRound;
       roundScore.textContent = newScore;
+      savingDataToLocal(newScore);
     }
   });
 };
+
+const savingDataToLocal = (newScore) => {
+  const savedScore = localStorage.getItem("highScore");
+  if (newScore >= savedScore) {
+    const highScoreEle = document.querySelector("#high-score-number");
+    localStorage.setItem("highScore", newScore);
+    highScoreEle.textContent = localStorage.getItem("highScore");
+  }
+};
+
+const checkLocalData = () => {
+  const savedScore = localStorage.getItem("highScore");
+  const highScoreEle = document.querySelector("#high-score-number");
+  if (savedScore === null) {
+    localStorage.setItem("highScore", 0);
+    highScoreEle.textContent = localStorage.getItem("highScore");
+  } else {
+    highScoreEle.textContent = localStorage.getItem("highScore");
+  }
+};
+checkLocalData();
 
 /**
  * Handles the submitted answer either will move attempt to next row,
