@@ -408,15 +408,20 @@ const giveScore = (difficulty) => {
       const pointsForRound = pointsAvailable / (curRow + 1);
       const roundScore = document.querySelector(".round-score");
       const currScore = parseFloat(roundScore.textContent);
-      const newScore = currScore + pointsForRound;
+      const newScore = Number(currScore + pointsForRound).toFixed(2);
       roundScore.textContent = newScore;
       savingDataToLocal(newScore);
     }
   });
 };
 
-const savingDataToLocal = (newScore) => {
-  const savedScore = localStorage.getItem("highScore");
+/**
+ * This function will check if the current score is higher than the highscore and if it is will save the new highscore to the local storage.
+ * @param {number} newScore
+ */
+const savingDataToLocal = (score) => {
+  const newScore = Number(score);
+  const savedScore = parseFloat(localStorage.getItem("highScore")).toFixed(2);
   if (newScore >= savedScore) {
     const highScoreEle = document.querySelector("#high-score-number");
     localStorage.setItem("highScore", newScore);
