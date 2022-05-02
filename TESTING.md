@@ -87,9 +87,11 @@ The README documentation can be found here:- [README.md](./README.md)
 
 4.[Google Lighthouse](https://developers.google.com/web/tools/lighthouse) - Testing
 
+![Google Lighthouse Performance](./assets/images/googleLighthouseImage.jpg)
+
 5.[WAVE](https://wave.webaim.org/) - Testing
 
-    No errors found.
+    Congratulations! No errors were detected! Manual testing is still necessary to ensure compliance and optimal accessibility.
 
 > Automated testing was also completed using JEST.js.
 >
