@@ -217,7 +217,7 @@ i:hover{
         width: 360px;
     }
     
-    .scoring{
+    .scoring, .input button{
         font-size: 0.9em;
     }
 
@@ -227,12 +227,18 @@ i:hover{
     }
 
     .input button {
-        width: 26px;
+        width: 28px;
         height: 44px;
     }
 
-    .input button:nth-child(20),
-    .input button:nth-child(28) {
-        width: 52px;
+    .input button:nth-child(11) {
+        margin-left: 26px;
+    }
+    
+    .input button:nth-child(20){
+        width: 48px;
+    }
+    .input button:nth-child(28){
+        width: 42px;
     }
 }
