@@ -485,4 +485,5 @@ const submittingAnswer = () => {
   }
 };
 
-module.exports = createEmptyArrays;
+// < WHEN TESTING ON JEST UNCOMMENT THE CODE BELOW >
+// module.exports = createEmptyArrays;
