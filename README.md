@@ -98,6 +98,38 @@
 
 ## Surface
 
+> ### Colour Scheme
+>
+> When choosing the colour scheme the aim was to ensure the user would not get distracted by the different colours but would also prevent eye strain if the user would be playing for a prolonged time.
+>
+> The elements were softened by using the transparency of the RGBA as sometimes white of a black screen can be too harsh for the user.
+>
+> The colours used are:
+>
+> - Page Background = rgba(54, 54, 54, 1)
+> - Game Background = rgba(235, 235, 235, 0.75)
+> - Button Colour = rgba(214, 237, 255, 0.75)
+> - Button Font Colour = Black
+> - Border Colour = rgba(255, 255, 255, 0.9)
+>
+> When the colours where selected, I then compared the contrast ratio between the various colors to ensure the site would obtain a [WCAG](https://webaim.org/resources/contrastchecker/) `AAA rating` and to confirm that the content of the site would be easily distinguishable from the background for users.
+>
+> ## Comparing the background to Gaming area that shows the Tiles
+>
+> ![WCAG Rating Background vs Tile Area](./assets/images/backGroundVsTileArea.jpg)
+>
+> ## Comparing the background to the Buttons and Hover styles
+>
+> ![WCAG Rating Background vs Buttons](./assets/images/backGroundVsButtons.jpg)
+>
+> ## Comparing the background to the Text
+>
+> ![WCAG Rating Background vs Tile Area](./assets/images/backGroundVsText.jpg)
+>
+> **Here are all of the colours that were used on the site:-**
+>
+> ![Site Colour Palette](./assets/images/image-gradient-theme.jpg)
+
 ---
 
 ## Features
@@ -171,9 +203,16 @@
 
 # Testing
 
-## Jest Automated Testing
+> ## Jest Automated Testing
+>
+> - Jest was used for automated jesting of some of the JavaScript logic, please refer to the testing documentation below for the results.
 
-> - Jest was used for automated jesting of some of the JavaScript logic, please find documentation below.
+> ## Manual Testing
+>
+> - Manually testing the game throughout development and playing a few rounds on the various difficulty to ensure the site works as intended, please refer to the testing documentation below for the results.
+
+> ## Testing Documentation
+>
 > - The testing documentation can be found here:- [TESTING.md](TESTING.md)
 
 ---
