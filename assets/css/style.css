@@ -40,7 +40,7 @@ th, td{
 /* <!-- Header --> */
 
 header{
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid rgba(128, 128, 128, 1);
     background-color: var(--pageBackground);
     position: -webkit-sticky;
 	position: sticky;
@@ -131,8 +131,8 @@ i:hover{
 
 .loader {
     align-items: center;
-    border: 6px solid #f3f3f3; 
-    border-top: 6px solid rgb(83, 81, 81); 
+    border: 6px solid rgba(243, 243, 243, 1); 
+    border-top: 6px solid rgba(83, 81, 81, 1); 
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -199,7 +199,7 @@ i:hover{
     border: none;
     background-color: var(--buttonColour);
     margin: 4px;
-    color: black;
+    color: rgba(0, 0, 0, 1);
 
 }
 
