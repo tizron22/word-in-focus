@@ -76,7 +76,12 @@ The README documentation can be found here:- [README.md](./README.md)
 
 1.[W3 Markup Validation](https://validator.w3.org/) - Testing
 
+    Document checking completed. No errors or warnings to show.
+
 2.[W3 Jigsaw](https://jigsaw.w3.org/css-validator/) - Testing
+
+    Congratulations! No Error Found.
+    This document validates as CSS level 3 + SVG !
 
 3.[JSHint](https://jshint.com/) - Testing
 
@@ -89,6 +94,8 @@ The README documentation can be found here:- [README.md](./README.md)
 > Automated testing was also completed using JEST.js.
 >
 > - [JEST](https://jestjs.io/) - For automated script testing.
+
+![Jest Testing Results](./assets/images/jestTestingImage.jpg)
 
 ---
 
