@@ -2,18 +2,18 @@
 /* <!-- Global variables for sheet --> */
 
 :root{
-    --pageBackground: rgba(189, 177, 163, 1);
-    --gameBackground: rgba(161, 134, 100, 0.5);
+    --pageBackground: rgb(54, 54, 54);
+    --gameBackground: rgba(235, 235, 235, 0.75);
 
-    --buttonColour: rgba(189, 220, 255, 1);
-    --borderColour: rgba(57, 57, 60, 1);
-    
+    --buttonColour: rgba(214, 237, 255, 0.75);
+    --borderColour: rgba(255, 255, 255, 0.75);   
 }
 
 *{
     margin: 0;
     padding: 0;
     border: 0;
+    color: var(--borderColour);
 }
 
 ul{
@@ -113,6 +113,10 @@ nav {
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
+i:hover{
+    color: var(--pageBackground);
+}
+
 /* <!-- Gaming Area  --> */
 .game-display{
     width: 510px;
@@ -159,7 +163,7 @@ nav {
 }
 
 .game .tile {
-    border: 2px solid var(--borderColour);
+    border: 2px solid var(--pageBackground);
     box-sizing: border-box;
     width: 60px;
     height: 60px;
@@ -186,7 +190,6 @@ nav {
     flex-wrap: wrap;
     width: 510px;
     margin-top: 15px;
-
 }
 
 .input button {
@@ -196,6 +199,8 @@ nav {
     border: none;
     background-color: var(--buttonColour);
     margin: 4px;
+    color: black;
+
 }
 
 .input button:nth-child(11) {
