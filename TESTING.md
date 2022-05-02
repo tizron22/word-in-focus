@@ -94,6 +94,23 @@ The README documentation can be found here:- [README.md](./README.md)
 
 # Significant Bugs
 
+> ### Jest Mock DOM not loading
+>
+> - When initially running through JEST tests, a `TypeError: Cannot read properties of null (reading 'value)` showed before any testing commenced.
+> - The beforeall funtion was added to create a mock DOM before any tests, this was ignored and the DOM was not available when the function was being pulled into the test environment.
+> - Speaking to my Mentor `Ben Kavanagh`, he had a resolution of putting the require script within the beforeall after the dom was available which fixed the issue.
+
+> ### Answer not being assigned from wordArry
+>
+> - When attempting to assign the answer from the wordArray that was created from the API, the answer came back as undefined as the code was running too fast.
+> - Had a catch up with a collegeue `Asim Skeete` where we discussed the issue and he gave examples of how to fix the issue, multiple resources were sent over and we discussed how the code was running on the site.
+> - After looking at examples following the discussion, using the JS async function resolved this issue and took a few attempts to obtain the needed results.
+
+> ### On-click methods on Index causing errors
+>
+> - Futher down the line when manual testing an error occured with the onclick function on the index page, to remove this error I changed the code to apply an event listener in the JS code rather than adding it in the index sheet.
+> - Not sure what caused the issue but changing to an event listener applied in the code brought it inline with how the code was being written.
+
 ---
 
 The README documentation can be found here:- [README.md](./README.md)
