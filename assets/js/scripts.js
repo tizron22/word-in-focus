@@ -324,7 +324,7 @@ const keyboardClick = (letter) => {
 /**
  * Adds event listener when the keyboard is used instead of mouse.
  */
-const keyboardEvent = document.addEventListener("keydown", (event) => {
+document.addEventListener("keydown", (event) => {
   event.preventDefault();
   keyboardArr.forEach((key) => {
     if (key === event.key.toUpperCase()) {
@@ -371,10 +371,10 @@ const resultMsg = (userGuess) => {
     setTimeout(() => resetGame(), 5000);
   } else {
     if (curRow >= currentGuesses) {
-      resultText.textContent = "Try Again?";
+      resultText.textContent = `Try Again? - The correct answer was ${answer}`;
     }
   }
-  setTimeout(() => (resultText.textContent = ""), 7500);
+  setTimeout(() => (resultText.textContent = ""), 9000);
 };
 
 /**
