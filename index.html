@@ -46,6 +46,7 @@
 
     <!-- Game controls and scoring-->
     <section class="control-area">
+        <h2 class="sr-only">Gaming display area able to view highscore, current round/score, able to restart game and content based on round/game guesses.</h2>
         <div id="high-score-count" class="scoring highscore">Highscore: <span id="high-score-number">0</span></div>
         <div id="current-round" class="scoring">Round <span class="round-number">1</span> | Score <span class="round-score">0</span></div>
         <div id="restart" class="control">Restart Game</div>
@@ -53,6 +54,7 @@
 
     <!-- Gaming body / interaction -->
     <section class="game-display">
+        <h2 class="sr-only">Gaming area to review how many guesses you have, how many words are in the answer and clickable keyboard.</h2>
         <div class="result"></div>
         <div id="loader-holder" class="loader"></div>
         <div class="game"></div>
@@ -98,7 +100,7 @@
                 <p><strong>Example:</strong> If you selected Hard difficulty and guessed the word on the second attempt, you would have <strong>12.5 points</strong> for that round.</p>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Let's Play!</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Let's Play!</button>
             </div>
         </div>
         </div>
