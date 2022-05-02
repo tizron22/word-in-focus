@@ -251,11 +251,15 @@
 >   [Tilt-n-move-shaking Animiation](https://unused-css.com/blog/css-shake-animation/)
 > - Code snippet taken for the tiles to shake once an guess was submitted.
 
-### Pictures
-
 ---
 
 # Acknowledgements
+
+- I would like to thank my mentor **Ben Kavanagh**, who went above and beyond to support myself when I came across issue with JEST that stopped me moving forward with the project to find a fix and continuously offered support throughout the project duration.
+
+- Thank you to the Slack channel leads _(Old and New)_ who have created the various webinairs to supplement the LMS to improve my abilities and knowledge.
+
+- Thank you to my collegeues **Asim Skeete** would took time out from his day to catch up on with questions I had with JavaScript and was able to relate it to current IDE software I use in my role `SAS Enterprise Guide & VBA in Excel`.
 
 ---
 
