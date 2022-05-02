@@ -18,6 +18,25 @@ The README documentation can be found here:- [README.md](./README.md)
 
 # User Story Testing
 
+> As a potential new user, I like the site to be user friendly and easily understandable.
+>
+> - The website utilizing familiar icons commonly used on websites such as question mark for infomation and hamburger menu for more options.
+> - The website has a simple format which reduces the amount of nose that could distract the user whilst playing.
+
+> As a new user, I would like to be able to review the instuctions on how to play the game as well as the scoring involved.
+>
+> - When the user clicks on the question mark button, a model opens and covers the screen ensuring the instructions how to play can be read.
+> - To close the model the user needs to click either 'x' on the top right corner or 'Lets Play' on the bottom right.
+
+> As a current user, I would like to be able to beat any previous highscores set on previous interactions and review these scores.
+>
+> - For reoccuring users the highscore is saved to the local storage allowing users to improve on this score, if a highscore is not available on local storage one will be added as 0.
+> - If the current score is higher than the highscore, the local storage will be updated with this new score.
+
+> As a returning user, I would like a unique experience on each game to keep up on engagement whilst playing.
+>
+> - Each game played is unique as random words are pulled from the API, to have the same words appear are highly unlikely and could add to the difficulty as the user can never be sure.
+
 ---
 
 # Feature Testing
@@ -51,6 +70,7 @@ The README documentation can be found here:- [README.md](./README.md)
 >
 > - [W3 Markup Validation](https://validator.w3.org/) - For the HTML Vaildation.
 > - [W3 Jigsaw](https://jigsaw.w3.org/css-validator/) - For the CSS Vaildation.
+> - [JSHint](https://jshint.com/) - For the JavaScript Vaildation.
 > - [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) - For Performance, Accessibility, Best Practices, SEO and Progressive Web Apps.
 > - [WAVE](https://wave.webaim.org/) - For Accessibility.
 
@@ -58,11 +78,17 @@ The README documentation can be found here:- [README.md](./README.md)
 
 2.[W3 Jigsaw](https://jigsaw.w3.org/css-validator/) - Testing
 
-3.[Google Lighthouse](https://developers.google.com/web/tools/lighthouse) - Testing
+3.[JSHint](https://jshint.com/) - Testing
 
-4.[WAVE](https://wave.webaim.org/)
+4.[Google Lighthouse](https://developers.google.com/web/tools/lighthouse) - Testing
+
+5.[WAVE](https://wave.webaim.org/) - Testing
 
     No errors found.
+
+> Automated testing was also completed using JEST.js.
+>
+> - [JEST](https://jestjs.io/) - For automated script testing.
 
 ---
 
