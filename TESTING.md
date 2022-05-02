@@ -100,8 +100,8 @@ The README documentation can be found here:- [README.md](./README.md)
 > - [JEST](https://jestjs.io/) - For automated script testing.
 > - Due to the last minute change to the assessment criteria with adding Jest Automated Testing, if I have more time to thoroughly research the jest documentation and seperate tests for practice.
 > - I would have liked to run more comprehive testing to ensure majority of the functions pass automated testing before releasing to the stakeholder.
-
-![Jest Testing Results](./assets/images/jestTestingImage.jpg)
+>
+> ![Jest Testing Results](./assets/images/jestTestingImage.jpg)
 
 ---
 
