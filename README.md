@@ -2,7 +2,7 @@
 
 ---
 
-![Site Responsiveness]()
+![Site Responsiveness](./assets/images/multiScreen.jpg)
 
 [Click here to view website on GitHub Pages](https://tizron22.github.io/word-in-focus/).
 
@@ -187,6 +187,10 @@
 >
 > - In any future releases would like to add sign-up and login page to track user highscores to be able to compare performance, by having a leader board users will not only be able to compete against themselves but against other users too.
 > - By displaying a leader board we would be able to offer daily, weekly or monthly competitions to generate further use, exposure and potential for sponsers of these events for prizes.
+
+> ### Guess Hints
+>
+> When users are on last guess in the earlier rounds, would look to add some hints to prompt the next guess to be a correct one.
 
 ---
 
