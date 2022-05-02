@@ -213,7 +213,26 @@ i:hover{
 }
 
 @media screen and (max-width:510px){
-    body{
-        width: 510px;
+    header, .control-area, .input, .game, .game-display{
+        width: 360px;
+    }
+    
+    .scoring{
+        font-size: 0.9em;
+    }
+
+    .game .tile {
+        width: 45px;
+        height: 45px;
+    }
+
+    .input button {
+        width: 26px;
+        height: 44px;
+    }
+
+    .input button:nth-child(20),
+    .input button:nth-child(28) {
+        width: 52px;
     }
 }
