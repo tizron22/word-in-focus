@@ -307,7 +307,7 @@
 
 - Thank you to the Slack channel leads _(Old and New)_ who have created the various webinairs to supplement the LMS to improve my abilities and knowledge.
 
-- Thank you to my collegeue **Asim Skeete** would took time out from his day to catch up on with questions I had with JavaScript and was able to relate it to current IDE software I use in my role `SAS Enterprise Guide & VBA in Excel`.
+- I would also like to thank my collegeue **Asim Skeete**, who took time out from his day to catch up on with questions I had with JavaScript and was able to relate it to current IDE software I use in my role `SAS Enterprise Guide & VBA in Excel`.
 
 ---
 
