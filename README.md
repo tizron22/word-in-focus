@@ -113,7 +113,7 @@ No game is the same test your english language knowledge and guess the word with
 > - Page Background = rgba(54, 54, 54, 1)
 > - Game Background = rgba(235, 235, 235, 0.75)
 > - Button Colour = rgba(214, 237, 255, 0.75)
-> - Button Font Colour = Black
+> - Button Font Colour = rgba(0, 0, 0, 1)
 > - Border Colour = rgba(255, 255, 255, 0.9)
 >
 > When the colours where selected, I then compared the contrast ratio between the various colors to ensure the site would obtain a [WCAG](https://webaim.org/resources/contrastchecker/) `AAA rating` and to confirm that the content of the site would be easily distinguishable from the background for users.
