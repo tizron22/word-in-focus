@@ -2,10 +2,10 @@
 /* <!-- Global variables for sheet --> */
 
 :root{
-    --pageBackground: rgba(189, 178, 160, 1);
-    --gameBackground: rgba(150, 150, 150, 0.5);
+    --pageBackground: rgba(189, 177, 163, 1);
+    --gameBackground: rgba(161, 134, 100, 0.5);
 
-    --buttonColour: rgba(84, 93, 96, 1);
+    --buttonColour: rgba(189, 220, 255, 1);
     --borderColour: rgba(57, 57, 60, 1);
     
 }
@@ -103,7 +103,7 @@ nav {
 }
 
 .control{
-    border: 1px solid var(--buttonColour);
+    border: 1px solid var(--borderColour);
     border-radius: 20px;
     margin-top: 25px;
 }
