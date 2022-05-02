@@ -183,6 +183,11 @@
 
 ### Future Feature Considerations
 
+> ### Account / Leader Board
+>
+> - In any future releases would like to add sign-up and login page to track user highscores to be able to compare performance, by having a leader board users will not only be able to compete against themselves but against other users too.
+> - By displaying a leader board we would be able to offer daily, weekly or monthly competitions to generate further use, exposure and potential for sponsers of these events for prizes.
+
 ---
 
 ## Technologies Used

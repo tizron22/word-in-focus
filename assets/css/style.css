@@ -241,4 +241,8 @@ i:hover{
     .input button:nth-child(28){
         width: 42px;
     }
+    
+    .modal-dialog{
+        font-size: 0.75em;
+    }
 }
