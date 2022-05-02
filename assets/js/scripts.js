@@ -75,8 +75,6 @@ const assignWordToAnswer = async () => {
     wordArray = await getRandWords();
   }
   answer = wordArray.shift();
-  console.log(answer);
-  console.log(wordArray);
 };
 
 /**
