@@ -121,6 +121,10 @@
 > - Users once clicking on the hamburger menu, will see a dropdown underneath the header which will allow them to select which difficulty they would like to play at either easy, medium or hard.
 > - The default difficulty is set at medium.
 
+> #### Loader Spinner
+>
+> - When the API is calling or the script is running for a restart of game the loader spinner shows the user that the site is working on the request.
+
 > #### Highscore
 >
 > - This will show users the current highscore they have achieved out of the most recent games, to be able to compare against with the current round.
