@@ -3,7 +3,7 @@
 
 :root{
     --pageBackground: rgba(189, 178, 160, 1);
-    --gameBackground: rgba(150, 150, 150, 0.502);
+    --gameBackground: rgba(150, 150, 150, 0.5);
 
     --buttonColour: rgba(84, 93, 96, 1);
     --borderColour: rgba(57, 57, 60, 1);
@@ -41,6 +41,7 @@ th, td{
 
 header{
     border-bottom: 1px solid grey;
+    background-color: var(--pageBackground);
     position: -webkit-sticky;
 	position: sticky;
 	top: 0;
