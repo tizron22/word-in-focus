@@ -22,14 +22,26 @@ The README documentation can be found here:- [README.md](./README.md)
 
 # Feature Testing
 
-| Feature | Outcome | Additional Comments |
-| :------ | :------ | :------------------ |
+| Feature                          | Outcome           | Additional Comments                                                                                                                      |
+| :------------------------------- | :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| Game Instructions                | Works as intended | On clicking the question mark icon, it brings up the model and unable to click away until clicking the x or lets paly game buttons.      |
+| Hamburger Menu                   | Works as intended | On clicking the hamburger menu the game difficultly radio buttons will either hide or unhide.                                            |
+| Select Difficulty                | Works as intended | On clicking either easy, medium or hard radio buttons will reset the game to the desired difficulty but the default is at medium.        |
+| Loader Spinner                   | Works as intended | When the code is running the spinner shows to highlight to user that the site is processing the request and switches off once completed. |
+| Highscore                        | Works as intended | Upon opening the page, the previous highscore will show and will increase each time the user improves on this score.                     |
+| Round/Score                      | Works as intended | When the user is playing a game the round number and score will increase on each successful answer.                                      |
+| Restart Game                     | Works as intended | Restarts the game from scratch at the chosen difficulty.                                                                                 |
+| Gaming Tiles - `Game Play`       | Works as intended | Shows the number of columns and rows based on the difficulty.                                                                            |
+| Gaming Tiles - `Correct Guess`   | Works as intended | When the user submits a correct letter in the right column the tile will turn green to show a correct answer.                            |
+| Gaming Tiles - `Close Guess`     | Works as intended | When the user submits a wrong letter and in the wrong column the tile will turn grey to show the letter is not in the word.              |
+| Gaming Tiles - `Incorrect Guess` | Works as intended | Shows the number of columns and rows based on the difficulty.                                                                            |
+| Keyboard                         | Works as intended | On load of game displays keyboard buttons for the user to click and picks up on actual keyboard input for gaming tiles.                  |
 
 # Browser Testing
 
     All functionality worked as intended on Safari, Chrome, Firefox and Edge.
 
-    As IE is no supported anymore this has not been tested.
+    As IE is not supported anymore this has not been tested.
 
 ---
 
