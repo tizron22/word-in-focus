@@ -38,7 +38,7 @@
 
 Word in Focus is a web game designed to test your memory, select your difficulty and can you beat your highscore?
 
-No game is the same test your english words knowledge and guess will no clues other than playing the game.
+No game is the same test your english language knowledge and guess the word with no clues other than playing the game.
 
 ---
 
