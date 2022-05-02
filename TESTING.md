@@ -85,6 +85,8 @@ The README documentation can be found here:- [README.md](./README.md)
 
 3.[JSHint](https://jshint.com/) - Testing
 
+    No issues other than warnings regarding ES6+ such as const, let and arrow functions.
+
 4.[Google Lighthouse](https://developers.google.com/web/tools/lighthouse) - Testing
 
 ![Google Lighthouse Performance](./assets/images/googleLighthouseImage.jpg)
