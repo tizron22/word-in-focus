@@ -196,6 +196,14 @@ No game is the same test your english language knowledge and guess the word with
 >
 > When users are on last guess in the earlier rounds, would look to add some hints to prompt the next guess to be a correct one.
 
+> ### Colour coded keyboard
+>
+> If the user guesses the letter but does not appear in the answer the letter on the keyboard to change colour to prompt the user to not use this letter as it does nto exist in the answer.
+
+> ### Incorrect Input Word
+>
+> If the user inputs a word that is not an english word, the guess becomes invalid and the user has the opportunity to guess that row again.
+
 ---
 
 ## Technologies Used
@@ -220,6 +228,8 @@ No game is the same test your english language knowledge and guess the word with
 > ## Jest Automated Testing
 >
 > - Jest was used for automated jesting of some of the JavaScript logic, please refer to the testing documentation below for the results.
+> - The Jest test was testing that blank arrays could be created ready for the guesses and could be scaled if needed to higher difficulty settings. [Jest Script](./assets/js/tests/scripts.test.js)
+> - `I fully acknowledge and understand that, in a real-world scenario, an extensive set of Jest tests would be more comprehensive.`
 
 > ## Manual Testing
 >
