@@ -202,6 +202,7 @@ No game is the same test your english language knowledge and guess the word with
 
 > - The project was written in HTML, CSS and JavaScript.
 > - The project uses [FontAwesome](https://fontawesome.com/) for the free icons used for web development.
+> - The project uses [Bootstrap V5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) for page standardisation, modal functionality and model template.
 > - The project was written in [Visual Studio Code IDE](https://code.visualstudio.com/).
 > - The project was tested utalising [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extention in VS code.
 > - The project uses [GIT](https://git-scm.com/) for verison control and [GitHub](https://github.com/) as a remote repository.
