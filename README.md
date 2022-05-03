@@ -293,14 +293,20 @@ No game is the same test your english language knowledge and guess the word with
 ### Code Snippets
 
 > [Wordle Clone In Javascript - Code with Ania Kubów](https://www.youtube.com/watch?v=mpby4HiElek)
-> Some of the logic and thought process used in this video was altered for use within this project.
+>
+> - The logic and thought process that was used in this video inspired some of the logic and flow used within this project.
+
 > [Pressed Effect - GeeksforGeeks](https://www.geeksforgeeks.org/how-to-add-a-pressed-effect-on-button-click-in-css/)
 >
 > - Code snippet taken on how to create a pressed effect for the restart button.
->   [Jest Dom Display - Ben Kavanagh](https://github.com/BAK2K3)
+
+> [Jest Dom Display - Ben Kavanagh](https://github.com/BAK2K3)
+>
 > - When testing with Jest Issues occured where the DOM wasn't being opened before the test which caused errors with the automated testing.
 > - Spoke to Ben provided a solution for the code to work.
->   [Tilt-n-move-shaking Animiation](https://unused-css.com/blog/css-shake-animation/)
+
+> [Tilt-n-move-shaking Animiation](https://unused-css.com/blog/css-shake-animation/)
+>
 > - Code snippet taken for the tiles to shake once an guess was submitted.
 
 ---
