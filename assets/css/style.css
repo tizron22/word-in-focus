@@ -20,6 +20,7 @@ ul{
 }
 
 body{
+    font-family: Calibri, sans-serif;
     background-color: var(--pageBackground);
     display: flex;
     flex-direction: column;
@@ -125,6 +126,7 @@ nav {
     margin: 10px;
     letter-spacing: 2px;
     text-align: center;
+    color: var(--borderColour);
 }
 
 .loader {
