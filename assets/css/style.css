@@ -116,6 +116,11 @@ nav {
     color: var(--pageBackground);
 
 }
+.holder{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
 
 /* <!-- Gaming Area  --> */
 .game-display{
