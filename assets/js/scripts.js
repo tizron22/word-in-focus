@@ -71,9 +71,6 @@ let wordArray;
  * Assigns the first word of the array to the answer variable.
  */
 const assignWordToAnswer = async () => {
-  if (!wordArray.length > 1) {
-    wordArray = await getRandWords();
-  }
   answer = wordArray.shift();
 };
 
@@ -128,22 +125,26 @@ const checkWordExists = async (word) => {
  * This is the API fetch that gets the data to use in the game.
  */
 const getRandWords = async () => {
-  try {
-    const response = await fetch(
-      `https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`,
-      randWordKeys
-    );
-    const jsonData = await response.json();
-    const validWords = await Promise.all(jsonData.map(checkWordExists));
-    const words = validWords.filter((word) => word !== "");
-
-    wordArray = words;
+  if (wordArray.length > 1) {
     assignWordToAnswer();
-  } catch (err) {
-    const resultText = document.querySelector(".result");
-    resultText.textContent =
-      "An Error has been found, please restart the game.";
+  } else {
+    try {
+      const response = await fetch(
+        `https://random-words5.p.rapidapi.com/getMultipleRandom?count=20&wordLength=${currentWordLength}`,
+        randWordKeys
+      );
+      const jsonData = await response.json();
+      const validWords = await Promise.all(jsonData.map(checkWordExists));
+      const words = validWords.filter((word) => word !== "");
+      wordArray = [...words];
+      assignWordToAnswer();
+    } catch (err) {
+      const resultText = document.querySelector(".result");
+      resultText.textContent =
+        "An Error has been found, please restart the game.";
+    }
   }
+  return wordArray;
 };
 
 /**
@@ -175,8 +176,6 @@ let guessInput;
  */
 const resetGame = async () => {
   wordArray = await getRandWords();
-  // await assignWordToAnswer(wordArray);
-  // console.log(wordArray);
   let gameDisplay = document.querySelector(".game");
   gameDisplay.innerHTML = "";
   curRow = 0;
