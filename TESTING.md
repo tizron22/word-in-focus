@@ -124,6 +124,11 @@ The README documentation can be found here:- [README.md](./README.md)
 > - Futher down the line when manual testing an error occured with the onclick function on the index page, to remove this error I changed the code to apply an event listener in the JS code rather than adding it in the index sheet.
 > - Not sure what caused the issue but changing to an event listener applied in the code brought it inline with how the code was being written.
 
+> ### Repeated Letters Show in Results
+>
+> - If the user selects a letter that exists in the word more than once, this will flag as orange but should only do this if the letter should still be added into the word.
+> - Example is ROAR, if the the user guess the right space for the two 'R's but inputs a third 'R' this should be greyed out to avoid confusion that there could be a third 'R'.
+
 ---
 
 The README documentation can be found here:- [README.md](./README.md)
